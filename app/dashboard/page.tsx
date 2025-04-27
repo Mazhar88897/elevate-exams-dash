@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, Lock } from "lucide-react"
+import { ChevronLeft, ChevronRight, LucideArrowRight } from "lucide-react"
 import { useWindowSize } from "@/hooks/use-window-size"
 import CalendarSchedule from "@/components/dashboardItems/calender"
 import Access from "@/components/dashboardItems/access"
+import Link from "next/link"
 interface Course {
     id: number;
     title: string;
@@ -16,6 +17,7 @@ interface Course {
     total: number;
   }
 // Course data
+
 const inProgressCourses = [
   {
     id: 1, 
@@ -289,12 +291,13 @@ function CourseCard({ course }: CourseCardProps) {
       </CardContent>
       <CardFooter className="p-3 pt-0 flex justify-between items-center text-xs text-gray-500">
         <span>
-          {course.progress}/{course.total}
+          <span className="font-bold ">{course.progress}{" "}</span>/{course.total}
         </span>
-        <button className="flex bg-white text-black border-2 px-1 py-[0.1rem] rounded-mid items-center gap-1">
+        <Link href="/course/course-details" className="flex font-bold bg-white text-black border-2 px-1 py-[0.1rem] rounded-mid items-center gap-1">
           Continue
-          {/* <ChevronRight className="h-3 w-3" /> */}
-        </button>
+          <div className="border-2 border-black rounded-full p-[0.1rem]"><LucideArrowRight className="h-2 w-2" strokeWidth={3} /></div>
+          
+        </Link>
       </CardFooter>
     </Card>
   )

@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import Link from "next/link"
 
 interface SidebarProps {
   className?: string
@@ -59,14 +60,14 @@ export default function Sidebar({ className }: SidebarProps) {
   }
 
   const menuItems = [
-    { icon: Home, label: "Home" },
-    { icon: Users, label: "My learning" },
-    { icon: FileText, label: "Add learning", hasSeparator: true },
-    { icon: Palette, label: "Theme" },
-    { icon: User, label: "Account" },
-    { icon: HelpCircle, label: "Help", hasSeparator: true },
-    { icon: Bell, label: "Notification" },
-    { icon: LogOut, label: "Logout" },
+    { icon: Home, label: "Home", link: "/dashboard" },
+    { icon: Users, label: "My learning", link: "/dashboard" },
+    { icon: FileText, label: "Add learning", hasSeparator: true, link: "/dashboard" },
+    { icon: Palette, label: "Theme", link: "/dashboard" },
+    { icon: User, label: "Account", link: "/dashboard/account" },
+    { icon: HelpCircle, label: "Help", hasSeparator: true, link: "/dashboard/help" },
+    { icon: Bell, label: "Notification" }, // no link
+    { icon: LogOut, label: "Logout" }, // no link
   ]
 
   return (
@@ -92,9 +93,7 @@ export default function Sidebar({ className }: SidebarProps) {
       >
         {/* Logo */}
         <div className="flex items-center justify-center h-16 px-4">
-          <div className="flex items-center">
-            <Image src="/logo.svg" alt="Logo" width={150} height={100} />
-          </div>
+          <Image src="/logo.svg" alt="Logo" width={150} height={100} />
         </div>
 
         {/* Navigation */}
@@ -102,17 +101,26 @@ export default function Sidebar({ className }: SidebarProps) {
           {menuItems.map((item, index) => (
             <div key={index}>
               {item.hasSeparator && <Separator className="my-2" />}
-              <a
-                href="#"
-                className="flex items-center px-2 py-3 text-sm font-bold rounded-md hover:bg-gray-100"
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleMenuItemClick(item.label)
-                }}
-              >
-                <item.icon className="w-5 font-bold h-5 mr-3" />
-                {item.label}
-              </a>
+              
+              {item.link ? (
+                // If item has link -> normal link
+                <Link
+                  href={item.link}
+                  className="flex items-center px-2 py-3 text-sm font-bold rounded-md hover:bg-gray-100"
+                >
+                  <item.icon className="w-5 font-bold h-5 mr-3" />
+                  {item.label}
+                </Link>
+              ) : (
+                // If item has NO link -> behave like a button
+                <button
+                  onClick={() => handleMenuItemClick(item.label)}
+                  className="w-full flex items-center px-2 py-3 text-sm font-bold rounded-md hover:bg-gray-100"
+                >
+                  <item.icon className="w-5 font-bold h-5 mr-3" />
+                  {item.label}
+                </button>
+              )}
             </div>
           ))}
         </nav>
@@ -120,7 +128,10 @@ export default function Sidebar({ className }: SidebarProps) {
 
       {/* Overlay for mobile */}
       {isMobile && isOpen && (
-        <div className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden" onClick={toggleSidebar} />
+        <div
+          className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden"
+          onClick={toggleSidebar}
+        />
       )}
 
       {/* Notification Modal */}
@@ -217,7 +228,6 @@ export default function Sidebar({ className }: SidebarProps) {
               onClick={() => {
                 // Handle logout logic here
                 setLogoutOpen(false)
-                // You would typically redirect to login page or clear auth state
                 console.log("User logged out")
               }}
             >

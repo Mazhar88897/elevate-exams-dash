@@ -1,15 +1,15 @@
 "use client"
 import Link from "next/link"
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import {
   Home,
   Users,
   FileText,
-  Clock,
   User,
   HelpCircle,
   Bell,
-  ClipboardList,
   Menu,
   X,
   FileQuestion,
@@ -18,6 +18,7 @@ import {
   Bot,
   FileIcon,
   LogOut,
+  Palette,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -36,7 +37,7 @@ interface SidebarProps {
   className?: string
 }
 
-export  function Sidebar({ className }: SidebarProps) {
+export function Sidebar({ className }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const [notificationOpen, setNotificationOpen] = useState(false)
@@ -76,49 +77,46 @@ export  function Sidebar({ className }: SidebarProps) {
 
   // Icon-only sidebar items
   const iconItems = [
-    { icon: Home, label: "Home" },
-    { icon: Users, label: "Users" },
-    { icon: FileText, label: "Documents", hasSeparator: true },
-    { icon: Clock, label: "History" },
-    { icon: User, label: "Profile" },
-    { icon: HelpCircle, label: "Help", hasSeparator: true },
-    { icon: Bell, label: "Notifications" },
-    { icon: LogOut, label: "Logout" },
+    { icon: Home, label: "Home", link: "/dashboard" },
+    { icon: Users, label: "My learning", link: "/dashboard" },
+    { icon: FileText, label: "Add learning", hasSeparator: true, link: "/dashboard" },
+    { icon: Palette, label: "Theme", link: "/dashboard" },
+    { icon: User, label: "Account", link: "/dashboard/account" },
+    { icon: HelpCircle, label: "Help", hasSeparator: true, link: "/dashboard/help" },
+    { icon: Bell, label: "Notification" }, // no link
+    { icon: LogOut, label: "Logout" }, // no link
   ]
 
   function getRandomColor(): string {
-    const colors = ["yellow", "pink", "purple", "blue", "red", "orange", "green", "brown"];
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
+    const colors = ["yellow", "pink", "purple", "blue", "red", "orange", "green", "brown"]
+    const randomIndex = Math.floor(Math.random() * colors.length)
+    return colors[randomIndex]
   }
   // Content sidebar sections
   const servicesSections = [
     {
       title: "Quizes",
       items: [
-        { icon: FileQuestion, label: "Quiz by Domain" },
-        { icon: CheckSquare, label: "Quiz by randomize" },
+        { icon: FileQuestion, label: "Quiz by Domain", link: "/pages/build-your-own" },
+        { icon: CheckSquare, label: "Quiz by randomize", link: "/pages/build-your-own" },
       ],
     },
     {
       title: "Services",
       items: [
-        { icon: FileText, label: "Flashcards" },
-        { icon: BarChart2, label: "Stats" },
-        { icon: CheckSquare, label: "Reviews" },
-        { icon: CheckSquare, label: "Assessments" },
-       
+        { icon: FileText, label: "Flashcards", link: "/pages/flashcards" },
+        { icon: BarChart2, label: "Stats", link: "/course/result" },
+        { icon: CheckSquare, label: "Reviews", link: "/course/result" },
+        { icon: CheckSquare, label: "Assessments", link: "/pages/Information-Mock-Assessment" },
       ],
     },
     {
-        title: "",
-        items: [
-          
-          { icon: Bot, label: "AI Chatbot" },
-          { icon: FileIcon, label: "Notes" },
-    
-        ],
-      },
+      title: "",
+      items: [
+        { icon: Bot, label: "AI Chatbot", link: "" },
+        { icon: FileIcon, label: "Notes", link: "/course/notes" },
+      ],
+    },
   ]
 
   return (
@@ -146,9 +144,7 @@ export  function Sidebar({ className }: SidebarProps) {
         <div className="w-[60px] bg-white border-r border-gray-200 flex flex-col">
           {/* Logo */}
           <div className="flex items-center justify-center h-16 px-2">
-            <div className="flex items-center h-40">
-           
-            </div>
+            <div className="flex items-center h-40"></div>
           </div>
 
           {/* Icon Navigation */}
@@ -157,11 +153,13 @@ export  function Sidebar({ className }: SidebarProps) {
               <div key={index} className="flex flex-col items-center">
                 {item.hasSeparator && <Separator className="w-8 my-3" />}
                 <Link
-                  href="#"
+                  href={item.link || "#"}
                   className="flex items-center justify-center w-10 h-10 rounded-md hover:bg-gray-100"
                   onClick={(e) => {
-                    e.preventDefault()
-                    handleMenuItemClick(item.label)
+                    if (!item.link) {
+                      e.preventDefault()
+                      handleMenuItemClick(item.label)
+                    }
                   }}
                 >
                   <item.icon className="w-5 h-5 icon-bold" strokeWidth={3} />
@@ -176,7 +174,7 @@ export  function Sidebar({ className }: SidebarProps) {
         <div className="w-[240px] bg-white border-r border-gray-200 flex flex-col">
           {/* Logo Text */}
           <div className="flex justify-center text-center items-center py-4">
-          <Image src="/logo.svg" alt="Elevate" width={150} height={150} />
+            <Image src="/logo.svg" alt="Elevate" width={150} height={150} />
           </div>
 
           {/* Services Navigation */}
@@ -188,17 +186,19 @@ export  function Sidebar({ className }: SidebarProps) {
                   {section.items.map((item, itemIndex) => (
                     <Link
                       key={itemIndex}
-                      href="#"
+                      href={item.link || "#"}
                       className="flex items-center text-bold px-2 py-2 text-sm rounded-md hover:bg-gray-100"
                       onClick={(e) => {
-                        e.preventDefault()
-                        handleMenuItemClick(item.label)
+                        if (!item.link) {
+                          e.preventDefault()
+                          handleMenuItemClick(item.label)
+                        }
                       }}
                     >
-                        <div className={`rounded bg-slate-200 p-[1px] mr-3`}>
-                            <item.icon strokeWidth={3} className="w-4 font-bold h-4 " />
-                        </div>
-                      
+                      <div className={`rounded bg-slate-200 p-[1px] mr-3`}>
+                        <item.icon strokeWidth={3} className="w-4 font-bold h-4 " />
+                      </div>
+
                       <p className="font-bold text-[#505050]">{item.label}</p>
                     </Link>
                   ))}
@@ -276,20 +276,15 @@ export  function Sidebar({ className }: SidebarProps) {
   )
 }
 
-
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-
-     
-          <div className="flex min-h-screen">
-            <Sidebar />
-            <main className="flex-1 md:ml-[300px]">{children}</main>
-          </div>
-     
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <main className="flex-1  md:ml-[300px]">{children}</main>
+    </div>
   )
 }

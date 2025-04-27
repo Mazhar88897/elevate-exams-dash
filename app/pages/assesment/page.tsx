@@ -412,11 +412,11 @@ export default function QuizPage() {
       {/* Main content */}
       <div className="flex-1 m-4 mt-8 flex flex-col">
         {/* Premium banner */}
-        <div className="">
+        <div className="max-w-5xl mx-auto w-full">
        <Access />
        </div>
         {/* Progress bar */}
-        <div className="w-full px-4 rounded-mid">
+        <div className="max-w-3xl mx-auto w-full px-4 rounded-mid">
           <Progress value={progress} className="h-1.5 bg-gray-200 rounded-mid" />
         </div>
 

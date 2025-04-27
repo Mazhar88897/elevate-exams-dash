@@ -18,7 +18,7 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="bg-gray-50 py-4">
+    <div className="bg-gray-50 p-4">
      <div className="px-5 pt-10 md:pt-5">
     <Access />
     </div>

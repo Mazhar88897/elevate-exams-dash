@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { FileText, ArrowLeft } from "lucide-react"
 import { ChevronRight } from "lucide-react"
+import Link from "next/link"
 export default function MockAssessmentPage() {
   // State to track which view is currently showing
   const [currentView, setCurrentView] = useState("main")
@@ -34,31 +35,31 @@ export default function MockAssessmentPage() {
             <p className="text-sm text-muted-foreground">Domaine Name</p>
           </div>
         </div>
-        <div className="bg-[#5834BD] flex items-center justify-center  py-[0.45rem] text-center font-bold text-xs text-white rounded-mid w-28 hover:bg-purple-700" onClick={() => setCurrentView("next")}>
+        < Link href="/pages/Mock-Exam-Assesment" className="bg-[#5834BD] flex items-center justify-center  py-[0.45rem] text-center font-bold text-xs text-white rounded-mid w-28 hover:bg-purple-700" >
           <p>Next</p> <ChevronRight className="h-4 w-4 font-black text-white" />
-        </div>
+        </Link>
       </div>
 
       <div className="space-y-4 mb-8">
         <div className="flex justify-between items-center">
-          <div className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</div>
-          <Button variant="link" className="text-right" onClick={() => handleViewResult("recent")}>
+        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Button>
+          </Link>
         </div>
 
         <div className="flex justify-between items-center">
-        <div className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center  text-slate-800 text-sm font-bold"  onClick={()=>{}}>length of exam - 140</div>
-        <Button variant="link" className="text-right" onClick={() => handleViewResult("1")}>
+        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+          <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Button>
+          </Link>
         </div>
 
         <div className="flex justify-between items-center">
-        <div className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center  text-slate-800 text-sm font-bold"  onClick={()=>{}}>length of exam - 140</div>
-        <Button variant="link" className="text-right" onClick={() => handleViewResult("2")}>
+        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Button>
+          </Link>
         </div>
       </div>
 

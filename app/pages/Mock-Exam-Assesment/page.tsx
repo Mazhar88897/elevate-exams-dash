@@ -1,10 +1,12 @@
 "use client"
 
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { FileText, ArrowLeft } from "lucide-react"
 import { ChevronRight } from "lucide-react"
+import Link from "next/link"
 export default function MockAssessmentPage() {
   // State to track which view is currently showing
   const [currentView, setCurrentView] = useState("main")
@@ -51,15 +53,15 @@ export default function MockAssessmentPage() {
 
       <div className="space-y-4 my-8 ">
         <div className="flex justify-between items-center">
-          <div className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border border-slate-800 text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 1</div>
+        <Link href="/pages/assesment" className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border border-slate-800 text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 1</Link>
           
         </div>
         <div className="flex justify-between items-center">
-          <div className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center border-slate-800 text-slate-800 text-sm font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 2</div>
+          <Link href="/pages/assesment" className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center border-slate-800 text-slate-800 text-sm font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 2</Link>
           
         </div>
         <div className="flex justify-between items-center">
-          <div className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm border-slate-800 font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 3</div>
+          <Link href="/pages/assesment" className="w-full max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm border-slate-800 font-bold" onClick={()=>{}}>Mock Exam Test - Chapter 3</Link>
           
         </div>
 
