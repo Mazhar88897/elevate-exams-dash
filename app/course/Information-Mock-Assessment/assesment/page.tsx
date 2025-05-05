@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
-import { Flag, AlertTriangle, X } from "lucide-react"
+import { Flag, AlertTriangle, X, SkipForward } from "lucide-react"
 import Access from "@/components/dashboardItems/access"
 import Link from "next/link"
 
@@ -77,9 +77,12 @@ interface Course {
   courseName: string
   chapters: Chapter[]
 }
+import { useSupportModal } from "@/components/dashboardItems/support-modal"
 
 export default function QuizPage() {
   // Course data
+  const { openSupportModal } = useSupportModal()
+
   const course: Course = {
     courseName: "Introduction to TypeScript",
     chapters: [
@@ -411,7 +414,7 @@ export default function QuizPage() {
       </div> */}
 
       {/* Main content */}
-      <div className="flex-1 m-4 mt-8 flex flex-col">
+      <div className="flex-1 m-4 mt-12 flex flex-col">
         {/* Premium banner */}
         <div className="max-w-5xl mx-auto w-full">
        <Access />
@@ -423,26 +426,26 @@ export default function QuizPage() {
 
         {/* Question content */}
         <div className="flex-1 p-6 max-w-3xl mx-auto w-full">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex   justify-between items-center mb-4">
             <div className="text-sm font-black text-gray-600">
               Question <span className="text-green-600">{getQuestionNumber()}</span> of <span className="text-green-600">{totalQuestions}</span> 
             </div>
-            <div className="flex gap-2">
-              <Button variant="ghost" size="sm" className="text-gray-600 flex items-center gap-1" onClick={handleSkip}>
+            <div className="flex ">
+              <div className="text-gray-600 flex items-center " onClick={handleSkip}>
+              <SkipForward className="h-3 mr-1 w-3 " strokeWidth={3} />
                 <span className="text-sm font-bold">Skip</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
+              </div>
+              <div
+                
                 className={cn(
-                  "text-gray-600 flex items-center gap-1",
+                  "text-gray-600 mx-3 flex items-center ",
                   flaggedQuestions[currentChapterIndex][currentQuestionIndex] && "text-yellow-500",
                 )}
                 onClick={handleFlag}
               >
-                <Flag className="h-4 w-4" />
+                <Flag className="h-3 mr-1 w-3" strokeWidth={3} />
                 <span className="text-sm font-bold">Flag</span>
-              </Button>
+              </div>
               
               <Link href="/course/course-details">
               <div
@@ -454,7 +457,7 @@ export default function QuizPage() {
                 onClick={handleFlag}
               >
                
-                <span className="text-sm flex items-center justify-center border-2 border-white p-1 gap-1 px-2 mr-1 rounded-mid font-black">Quit            <X className="h-4 w-4 " strokeWidth={3} /> </span>
+                <span className="text-sm flex items-center justify-center border-2 border-white rounded-mid font-black">Quit            <X className="h-4 w-4 mr-1 " strokeWidth={3} /> </span>
              
       
                
@@ -513,8 +516,8 @@ export default function QuizPage() {
 
           {/* Report issue */}
           <div className="mt-8 text-sm text-gray-500 flex items-center gap-1">
-            <span className="text-sx text-gray-700 font-bold">have issue in this question?</span>
-            <button className="text-black font-black flex items-center gap-1">
+            <span className="text-xs text-gray-700 font-bold">have issue in this question?</span>
+            <button onClick={openSupportModal}  className="text-black text-xs font-black flex items-center gap-1">
               report an issue
               <AlertTriangle className="h-3 w-3" />
             </button>

@@ -61,7 +61,7 @@ export default function Sidebar({ className }: SidebarProps) {
 
   const menuItems = [
     { icon: Home, label: "Home", link: "/dashboard" },
-    { icon: FileText, label: "Add learning", hasSeparator: true, link: "/dashboard" },
+    { icon: FileText, label: "Add Courses", hasSeparator: true, link: "/dashboard" },
     { icon: Palette, label: "Theme", link: "/dashboard" },
     { icon: User, label: "Account", link: "/dashboard/account" },
     { icon: HelpCircle, label: "Help", hasSeparator: true, link: "/dashboard/help" },

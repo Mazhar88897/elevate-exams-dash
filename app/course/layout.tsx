@@ -83,7 +83,7 @@ export function Sidebar({ className }: SidebarProps) {
   const iconItems = [
     { icon: Home, label: "Home", link: "/dashboard" },
     { icon: Users, label: "My learning", link: "/dashboard" },
-    { icon: FileText, label: "Add learning", hasSeparator: true, link: "/dashboard" },
+    { icon: FileText, label: "Add Courses", hasSeparator: true, link: "/dashboard" },
     { icon: Palette, label: "Theme", link: "/dashboard" },
     { icon: User, label: "Account", link: "/dashboard/account" },
     { icon: HelpCircle, label: "Help", hasSeparator: true, link: "/dashboard/help" },
@@ -99,14 +99,14 @@ export function Sidebar({ className }: SidebarProps) {
   // Content sidebar sections
   const servicesSections = [
     {
-    
+      title: "Home",
       items: [
         { icon: HomeIcon, label: "Home", link: "/course/course-details" },
      
       ],
     },
     {
-      title: "Quizes",
+      title: "Quiz",
       items: [
         { icon: FileQuestion, label: "Quiz", link: "/pages/test" },
      
@@ -121,7 +121,7 @@ export function Sidebar({ className }: SidebarProps) {
       ],
     },
     {
-      title: "",
+      title: "Features",
       items: [
         { icon: Bot, label: "AI Chatbot", link: "" },
         { icon: BookText, label: "Notes", link: "/course/notes" },
@@ -286,7 +286,7 @@ export function Sidebar({ className }: SidebarProps) {
     </>
   )
 }
-
+import { SupportModalProvider } from "@/components/dashboardItems/support-modal"
 export default function RootLayout({
   children,
 }: {
@@ -295,7 +295,7 @@ export default function RootLayout({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1  md:ml-[300px]">{children}</main>
+      <main className="flex-1  md:ml-[300px]"><SupportModalProvider>{children}</SupportModalProvider></main>
     </div>
   )
 }
