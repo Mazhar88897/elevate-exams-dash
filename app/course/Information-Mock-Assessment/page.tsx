@@ -67,7 +67,7 @@ export default function MockAssessmentPage() {
       <div className="space-y-4 text-sm font-semibold text-slate-800">
         <p>Our mock exam imitates both the time limit and question count of the AMFTBB MFT exam.</p>
         <p>
-          Pocket Prep's subject matter experts developed this content to prepare you for the types of questions you will
+          Pocketubject matter experts developed this content to prepare you for the types of questions you will
           see on the official examination. We aim to cover all testing materials on the AMFTBB MFT Content Outline.
         </p>
         <p className="font-medium text-slate-400">Warning: You will NOT see these exam questions on exam day.</p>
@@ -81,7 +81,7 @@ export default function MockAssessmentPage() {
     <div className="container max-w-4xl mx-auto py-8 px-4">
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
         <h1 className="text-2xl font-bold mb-4">Next Page</h1>
-        <p className="mb-6">This is the content you see after clicking the "Next" button.</p>
+        <p className="mb-6">This is the content you see after clicking the Next button.</p>
         <Button onClick={handleBack} className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
           Back to Mock Assessment

@@ -150,13 +150,15 @@ export default function HelpPage() {
                     <AccordionContent className="text-xs text-gray-600">
                       <p>To reset your password:</p>
                       <ol className="list-decimal pl-5 mt-2 space-y-1">
-                        <li>Click on the "Forgot Password" link on the login page</li>
+                      <li>Click on the &quot;Forgot Password&quot; link on the login page</li>
+
                         <li>Enter the email address associated with your account</li>
                         <li>Check your email for a password reset link</li>
                         <li>Click the link and follow the instructions to create a new password</li>
                       </ol>
                       <p className="mt-2">
-                        If you don't receive the email within 5 minutes, check your spam folder or contact support.
+                      <p>If you don&apos;t receive the email within 5 minutes, check your spam folder or contact support.</p>
+
                       </p>
                     </AccordionContent>
                   </AccordionItem>
@@ -187,7 +189,8 @@ export default function HelpPage() {
                         <li>Go to your account settings</li>
                         <li>Click on the &apos;Billing&apos; tab</li>
                         <li>Under &apos;Payment Methods&apos;,&apos;click&apos; &apos;Edit&apos; next to your current payment method</li>
-                        <li>Enter your new payment details and click "Save"</li>
+                        <li>Enter your new payment details and click &quot;Save&quot;</li>
+
                       </ol>
                       <p className="mt-2">
                         Changes to your payment method will apply to your next billing cycle. If you have any issues,
