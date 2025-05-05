@@ -3,8 +3,9 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
-import { Flag, AlertTriangle } from "lucide-react"
+import { Flag, AlertTriangle, SkipForward, Circle,X, CopyX } from "lucide-react"
 import Access from "@/components/dashboardItems/access"
+import Link from "next/link"
 
 // Utility function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -413,11 +414,11 @@ export default function QuizPage() {
       {/* Main content */}
       <div className="flex-1 m-4 mt-8 flex flex-col">
         {/* Premium banner */}
-        <div className="">
+        <div className="max-w-5xl mx-auto w-full">
        <Access />
        </div>
         {/* Progress bar */}
-        <div className="w-full px-4 rounded-mid">
+        <div className="max-w-3xl mx-auto w-full px-4 rounded-mid">
           <Progress value={progress} className="h-1.5 bg-gray-200 rounded-mid" />
         </div>
 
@@ -443,6 +444,23 @@ export default function QuizPage() {
                 <Flag className="h-4 w-4" />
                 <span className="text-sm font-bold">Flag</span>
               </Button>
+              
+              <Link href="/course/course-details">
+              <div
+               
+                className={cn(
+                  " flex items-center gap-1",
+                   "hover:text-red-600",
+                )}
+                onClick={handleFlag}
+              >
+               
+                <span className="text-sm flex items-center justify-center border-2 border-white p-1 gap-1 px-2 mr-1 rounded-mid font-black">Quit            <X className="h-4 w-4 " strokeWidth={3} /> </span>
+             
+      
+               
+              </div>
+              </Link>
             </div>
           </div>
 

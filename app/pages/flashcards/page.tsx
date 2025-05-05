@@ -353,6 +353,7 @@ export default function FlashcardPage() {
       {/* Sidebar */}
       <div className="w-[18rem] border-r mt-5 p-4 hidden md:block bg-white">
         <div className="mb-6">
+          
           <h2 className="font-black text-slate-800 text-md mb-2">{myCourse.courseName}</h2>
        
           <Progress value={progress.overall} className="h-1.5 mt-4 rounded-full mb-4" />
@@ -412,10 +413,8 @@ export default function FlashcardPage() {
                 </button> */}
               </div>
             </div>
-            {/* <div className="flex justify-between items-center p-4 border-b">
-              <div className="text-sm text-gray-600">
+            <div className="flex justify-between items-center p-4 border-b">
               
-              </div>
               <div className="flex items-center gap-2">
                 <span className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">
                 
@@ -424,7 +423,7 @@ export default function FlashcardPage() {
                   <X className="h-5 w-5" />
                 </button>
               </div>
-            </div> */}
+            </div>
 
             {/* Card content with 3D flip */}
             <div className="flex-1 flex flex-col font-black text-slate-800  items-center justify-center p-8 relative">

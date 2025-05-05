@@ -61,7 +61,6 @@ export default function Sidebar({ className }: SidebarProps) {
 
   const menuItems = [
     { icon: Home, label: "Home", link: "/dashboard" },
-    { icon: Users, label: "My learning", link: "/dashboard" },
     { icon: FileText, label: "Add learning", hasSeparator: true, link: "/dashboard" },
     { icon: Palette, label: "Theme", link: "/dashboard" },
     { icon: User, label: "Account", link: "/dashboard/account" },
@@ -92,7 +91,7 @@ export default function Sidebar({ className }: SidebarProps) {
         )}
       >
         {/* Logo */}
-        <div className="flex items-center justify-center h-16 px-4">
+        <div className="flex py-4 items-center justify-center h-16 px-4">
           <Image src="/logo.svg" alt="Logo" width={150} height={100} />
         </div>
 

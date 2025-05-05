@@ -19,6 +19,10 @@ import {
   FileIcon,
   LogOut,
   Palette,
+  MonitorPlay,
+  BookText,
+  HomeIcon
+  
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -95,10 +99,17 @@ export function Sidebar({ className }: SidebarProps) {
   // Content sidebar sections
   const servicesSections = [
     {
+    
+      items: [
+        { icon: HomeIcon, label: "Home", link: "/course/course-details" },
+     
+      ],
+    },
+    {
       title: "Quizes",
       items: [
-        { icon: FileQuestion, label: "Quiz by Domain", link: "/pages/build-your-own" },
-        { icon: CheckSquare, label: "Quiz by randomize", link: "/pages/build-your-own" },
+        { icon: FileQuestion, label: "Quiz", link: "/pages/test" },
+     
       ],
     },
     {
@@ -106,15 +117,15 @@ export function Sidebar({ className }: SidebarProps) {
       items: [
         { icon: FileText, label: "Flashcards", link: "/pages/flashcards" },
         { icon: BarChart2, label: "Stats", link: "/course/result" },
-        { icon: CheckSquare, label: "Reviews", link: "/course/result" },
-        { icon: CheckSquare, label: "Assessments", link: "/pages/Information-Mock-Assessment" },
+        { icon: CheckSquare, label: "Assessments", link: "/course/Information-Mock-Assessment" },
       ],
     },
     {
       title: "",
       items: [
         { icon: Bot, label: "AI Chatbot", link: "" },
-        { icon: FileIcon, label: "Notes", link: "/course/notes" },
+        { icon: BookText, label: "Notes", link: "/course/notes" },
+        { icon: MonitorPlay, label: "Tutorial", link: "/course/notes" },
       ],
     },
   ]

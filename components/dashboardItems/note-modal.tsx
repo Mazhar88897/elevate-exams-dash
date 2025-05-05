@@ -3,8 +3,12 @@
 import { useState, useEffect, type FormEvent } from "react"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import type { Note } from "@/app/page"
 
+interface Note {
+  id: string,
+  title: string,
+  content: string
+}
 interface NoteModalProps {
   isOpen: boolean
   onClose: () => void

@@ -63,7 +63,7 @@ export default function HelpPage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">Your Email</Label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" required />
+                    <Input id="email" type="email"  placeholder="mk0906145@gmail.com" required />
                   </div>
 
                   <div className="space-y-2">

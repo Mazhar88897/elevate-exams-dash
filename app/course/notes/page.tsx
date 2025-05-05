@@ -116,14 +116,14 @@ export default function NotesApp() {
   return (
     <main className="container mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-lg font-bold mb-6">Welcome back, John Doe</h1>
+        <h1 className="text-lg font-bold mb-6"></h1>
 
         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
           <div className="relative w-full md:w-[500px]">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
-              placeholder="What do want to learn?"
+              placeholder="search "
               className="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               onChange={(e) => setSearchQuery(e.target.value)}
               value={searchQuery}

@@ -19,98 +19,99 @@ interface Course {
 // Course data
 
 const inProgressCourses = [
-  {
-    id: 1, 
-    title: "Learn Python Intermediate with elevate exams",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 65,
-    total: 85,
-  },
-  {
-    id: 2,
-    title: "Advanced JavaScript Frameworks",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 42,
-    total: 60,
-  },
-  {
-    id: 3,
-    title: "Cloud Computing Fundamentals",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 28,
-    total: 50,
-  },
-  {
-    id: 4,
-    title: "Data Structures and Algorithms",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 75,
-    total: 90,
-  },
-  {
-    id: 5,
-    title: "Machine Learning Basics",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 15,
-    total: 40,
-  },
-  {
-    id: 6,
-    title: "Web Security Essentials",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 50,
-    total: 70,
-  },
-]
+  {   
+    id: 1,    
+    title: "Enhance your Python skills with real-world problems",    
+    category: "Python Intermediate",    
+    badge: "A",    
+    progress: 65,    
+    total: 85,  
+  },  
+  {    
+    id: 2,    
+    title: "Master advanced JS frameworks for web development",    
+    category: "Advanced JavaScript",    
+    badge: "A",    
+    progress: 42,    
+    total: 60,  
+  },  
+  {    
+    id: 3,    
+    title: "Learn the basics of cloud computing and services",    
+    category: "Cloud Computing",    
+    badge: "A",    
+    progress: 28,    
+    total: 50,  
+  },  
+  {    
+    id: 4,    
+    title: "Develop efficient algorithms and optimize data structures",    
+    category: "Data Structures & Algorithms",    
+    badge: "A",    
+    progress: 75,    
+    total: 90,  
+  },  
+  {    
+    id: 5,    
+    title: "Understand core ML concepts and algorithms",    
+    category: "Machine Learning",    
+    badge: "A",    
+    progress: 15,    
+    total: 40,  
+  },  
+  {    
+    id: 6,    
+    title: "Learn security best practices for web applications",    
+    category: "Web Security",    
+    badge: "A",    
+    progress: 50,    
+    total: 70,  
+  },  
+];
+
 
 const popularCourses = [
-  {
-    id: 1,
-    title: "Python for Data Science",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 0,
-    total: 75,
-  },
-  {
-    id: 2,
-    title: "Full Stack Web Development",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 0,
-    total: 90,
-  },
-  {
-    id: 3,
-    title: "Cybersecurity Fundamentals",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 0,
-    total: 65,
-  },
-  {
-    id: 4,
-    title: "DevOps and CI/CD Pipelines",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 0,
-    total: 80,
-  },
-  {
-    id: 5,
-    title: "Mobile App Development",
-    category: "IT & CYBERSECURITY",
-    badge: "A",
-    progress: 0,
-    total: 70,
-  },
-]
+  {    
+    id: 1,    
+    title: "Explore Python applications in data science",    
+    category: "Python for Data Science",    
+    badge: "A",    
+    progress: 0,    
+    total: 75,  
+  },  
+  {    
+    id: 2,    
+    title: "Learn full-stack development with modern tools",    
+    category: "Full Stack Web Dev",    
+    badge: "A",    
+    progress: 0,    
+    total: 90,  
+  },  
+  {    
+    id: 3,    
+    title: "Understand cybersecurity fundamentals and threats",    
+    category: "Cybersecurity Fundamentals",    
+    badge: "A",    
+    progress: 0,    
+    total: 65,  
+  },  
+  {    
+    id: 4,    
+    title: "Learn DevOps principles and CI/CD pipelines",    
+    category: "DevOps & CI/CD",    
+    badge: "A",    
+    progress: 0,    
+    total: 80,  
+  },  
+  {    
+    id: 5,    
+    title: "Build mobile apps for Android and iOS",    
+    category: "Mobile App Dev",    
+    badge: "A",    
+    progress: 0,    
+    total: 70,  
+  },  
+];
 
 export default function Dashboard() {
   // State for tracking visible cards
@@ -220,7 +221,7 @@ export default function Dashboard() {
         {/* Popular Courses */}
         <section className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold">Popular Courses</h2>
+            <h2 className="text-lg font-bold">All Courses</h2>
             <div className="flex gap-2">
               <button
                 className={`h-8 w-8 rounded-full border flex items-center justify-center ${
@@ -257,7 +258,7 @@ export default function Dashboard() {
         </section>
         <section>
         <div className="flex flex-col  justify-between mb-4">
-        <h2 className="text-lg font-bold mb-6">Popular Courses</h2>
+        <h2 className="text-lg font-bold mb-6">Calender</h2>
         <CalendarSchedule />
         </div>
         </section>
@@ -278,9 +279,9 @@ function CourseCard({ course }: CourseCardProps) {
       <CardHeader className="p-3 pb-0">
         <div className="flex items-center justify-between">
           <div className="bg-[#E4E3FF]   text-xs px-3 py-1 rounded-[30px] text-black font-bold">{course.category}</div>
-          <div className="bg-red-500 text-white h-6 w-6 rounded-full flex items-center justify-center text-xs">
+          {/* <div className="bg-red-500 text-white h-6 w-6 rounded-full flex items-center justify-center text-xs">
             {course.badge}
-          </div>
+          </div> */}
         </div>
       </CardHeader>
       <CardContent className="p-3">

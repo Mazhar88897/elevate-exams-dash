@@ -64,10 +64,10 @@ export default function QuizResultsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-8">
+    <div className="min-h-screen  p-6 md:p-8">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <h1 className="text-base font-bold text-gray-900 mb-6 ml-10 md:ml-0">welcome back, John Doe</h1>
+        <h1 className="text-base font-bold text-gray-900 mb-6 ml-10 md:ml-0"></h1>
 
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8">
           {/* Left side - Title and Status */}
@@ -76,10 +76,10 @@ export default function QuizResultsPage() {
               IT & Cybersecurity is the practice of protecting systems
             </h2>
             <div className="flex items-center gap-6 text-sm">
-              <div className="flex font-bold items-center gap-2">
+              {/* <div className="flex font-bold items-center gap-2">
                 <span>Status:</span>
                 <span className="font-bold text-green-800">Passed</span>
-              </div>
+              </div> */}
               <div className="flex font-bold items-center gap-2">
                 <span>Total Question:</span>
                 <span className="text-blue-800">20</span>

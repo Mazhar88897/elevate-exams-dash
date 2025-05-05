@@ -27,6 +27,7 @@ export default function MockAssessmentPage() {
   // Main view content
   const renderMainView = () => (
     <div className="container max-w-4xl mx-auto py-8 px-4">
+      <div className="">
       <div className="flex justify-between items-center mb-12">
         <div className="flex items-center gap-3">
           <FileText className="h-8 font-bold w-8" />
@@ -42,24 +43,24 @@ export default function MockAssessmentPage() {
 
       <div className="space-y-4 mb-8">
         <div className="flex justify-between items-center">
-        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
-        <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Link>
+          </Link> */}
         </div>
 
         <div className="flex justify-between items-center">
-        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
-          <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+          {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Link>
+          </Link> */}
         </div>
 
         <div className="flex justify-between items-center">
-        < Link href="/pages/Mock-Exam-Assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
-        <Link href="/pages/assessment-result" className="text-right hover:text-[#5834BD]" >
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -70,6 +71,7 @@ export default function MockAssessmentPage() {
           see on the official examination. We aim to cover all testing materials on the AMFTBB MFT Content Outline.
         </p>
         <p className="font-medium text-slate-400">Warning: You will NOT see these exam questions on exam day.</p>
+      </div>
       </div>
     </div>
   )
