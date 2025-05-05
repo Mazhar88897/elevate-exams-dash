@@ -167,9 +167,9 @@ export default function HelpPage() {
                       <p>You can find your course completion certificates in your profile section:</p>
                       <ol className="list-decimal pl-5 mt-2 space-y-1">
                         <li>Go to your account dashboard</li>
-                        <li>Click on "My Profile" in the navigation menu</li>
-                        <li>Select the "Certificates" tab</li>
-                        <li>Here you'll find all certificates for completed courses</li>
+                        <li>Click on &apos;My Profile&apos; in the navigation menu</li>
+                        <li>Select the &apos;Certificates&apos; tab</li>
+                        <li>Here you&apos;ll find all certificates for completed courses</li>
                       </ol>
                       <p className="mt-2">
                         Certificates are only issued for fully completed courses with a passing grade of 70% or higher.
@@ -185,8 +185,8 @@ export default function HelpPage() {
                       <p>To update your payment method:</p>
                       <ol className="list-decimal pl-5 mt-2 space-y-1">
                         <li>Go to your account settings</li>
-                        <li>Click on the "Billing" tab</li>
-                        <li>Under "Payment Methods," click "Edit" next to your current payment method</li>
+                        <li>Click on the &apos;Billing&apos; tab</li>
+                        <li>Under &apos;Payment Methods&apos;,&apos;click&apos; &apos;Edit&apos; next to your current payment method</li>
                         <li>Enter your new payment details and click "Save"</li>
                       </ol>
                       <p className="mt-2">
@@ -204,8 +204,8 @@ export default function HelpPage() {
                       <p>Your course progress is automatically tracked as you complete lessons and quizzes:</p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
                         <li>Progress bars on your dashboard show completion percentage for each course</li>
-                        <li>Within each course, you'll see checkmarks next to completed lessons</li>
-                        <li>The "My Learning" section provides detailed progress reports</li>
+                        <li>Within each course, you&apos;ll see checkmarks next to completed lessons</li>
+                        <li>The &apos;My Learning&apos; section provides detailed progress reports</li>
                       </ul>
                       <p className="mt-2">
                         Your progress is saved automatically, so you can always pick up where you left off, even if you

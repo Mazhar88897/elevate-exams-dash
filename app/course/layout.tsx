@@ -246,7 +246,7 @@ export function Sidebar({ className }: SidebarProps) {
               <div className="flex-1">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="font-medium">You've studied 3 sets! You've earned set stacker status.</p>
+                    <p className="font-medium">You&apos;ve studied 3 sets! You&apos;ve earned set stacker status.</p>
                     <p className="text-sm text-gray-500">5 days ago</p>
                   </div>
                 </div>

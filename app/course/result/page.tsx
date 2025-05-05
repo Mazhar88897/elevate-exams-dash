@@ -61,7 +61,7 @@ insight highlights</p>
   <div className="space-y-4 text-sm font-semibold text-slate-800">
     <p>Each figure represents an important aspect of our operations, helping you quickly assess outcomes, identify patterns, and stay informed about ongoing progress.</p>
     <p>
-    These stats provide valuable insights into how we're progressing and where opportunities for improvement lie.
+    These stats provide valuable insights into how we&apos;re progressing and where opportunities for improvement lie.
     </p>
     <p className="font-medium text-slate-400">Warning: You will NOT see these stats if exams are not attempted.</p>
   </div>

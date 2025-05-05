@@ -414,7 +414,9 @@ export default function FlashcardPage() {
               </div>
             </div>
             <div className="flex justify-between items-center p-4 border-b">
+              <div className="text-sm text-gray-600">
               
+              </div>
               <div className="flex items-center gap-2">
                 <span className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">
                 
