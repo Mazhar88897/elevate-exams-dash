@@ -25,7 +25,7 @@ export default function MockAssessmentPage() {
   }
 
   // Main view content
-  const renderMainView = () => (
+return (
     <div className="container max-w-4xl mx-auto py-8 px-4">
       <div className="">
       <div className="flex justify-between items-center mb-12">
@@ -36,9 +36,9 @@ export default function MockAssessmentPage() {
             <p className="text-sm text-muted-foreground">Domaine Name</p>
           </div>
         </div>
-        < Link href="/pages/Mock-Exam-Assesment" className="bg-[#5834BD] flex items-center justify-center  py-[0.45rem] text-center font-bold text-xs text-white rounded-mid w-28 hover:bg-purple-700" >
+        {/* < Link href="/pages/Mock-Exam-Assesment" className="bg-[#5834BD] flex items-center justify-center  py-[0.45rem] text-center font-bold text-xs text-white rounded-mid w-28 hover:bg-purple-700" >
           <p>Next</p> <ChevronRight className="h-4 w-4 font-black text-white" />
-        </Link>
+        </Link> */}
       </div>
 
       <div className="space-y-4 mb-8">
@@ -77,45 +77,11 @@ export default function MockAssessmentPage() {
   )
 
   // Next view content
-  const renderNextView = () => (
-    <div className="container max-w-4xl mx-auto py-8 px-4">
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-        <h1 className="text-2xl font-bold mb-4">Next Page</h1>
-        <p className="mb-6">This is the content you see after clicking the Next button.</p>
-        <Button onClick={handleBack} className="flex items-center gap-2">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Mock Assessment
-        </Button>
-      </div>
-    </div>
-  )
+
 
   // Result view content
-  const renderResultView = () => {
-    const isRecent = resultId === "recent"
 
-    return (
-      <div className="container max-w-4xl mx-auto py-8 px-4">
-        <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-          <h1 className="text-2xl font-bold mb-4">{isRecent ? "Recent Results (03)" : `Result Page ${resultId}`}</h1>
-          <p className="mb-6">
-            This displays the {isRecent ? "recent" : ""} results for mock assessment {resultId}.
-          </p>
-          <Button onClick={handleBack} className="flex items-center gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Mock Assessment
-          </Button>
-        </div>
-      </div>
-    )
-  }
 
   // Render the appropriate view based on current state
-  return (
-    <>
-      {currentView === "main" && renderMainView()}
-      {currentView === "next" && renderNextView()}
-      {currentView === "result" && renderResultView()}
-    </>
-  )
+ 
 }

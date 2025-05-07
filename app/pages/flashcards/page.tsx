@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { Star, X, ArrowLeft, ArrowRight, Shuffle, ChevronRight } from "lucide-react"
+import { Star, X, ArrowLeft, ArrowRight, Shuffle, ChevronRight, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 // Utility function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -77,9 +78,14 @@ type Flashcard = {
   answer: string
 }
 
+type Subchapter = {
+  subchapterName: string
+  flashcards: Flashcard[]
+}
+
 type Chapter = {
   chapterName: string
-  flashcards: Flashcard[]
+  subchapters: Subchapter[]
 }
 
 type Course = {
@@ -159,70 +165,117 @@ const FlashcardWithFlip = ({
 }
 
 export default function FlashcardPage() {
-  // Course data
+  // Course data with subchapters
   const myCourse: Course = {
     courseName: "Introduction to TypeScript",
     chapters: [
       {
         chapterName: "Getting Started",
-        flashcards: [
-          { question: "What is TypeScript?", answer: "A typed superset of JavaScript." },
-          { question: "Who developed TypeScript?", answer: "Microsoft." },
-          { question: "What is the file extension for TypeScript files?", answer: ".ts" },
-          { question: "How do you install TypeScript?", answer: "Using npm: `npm install -g typescript`" },
-          { question: "How to compile a TypeScript file?", answer: "`tsc filename.ts`" },
+        subchapters: [
+          {
+            subchapterName: "Introduction",
+            flashcards: [
+              { question: "What is TypeScript?", answer: "A typed superset of JavaScript." },
+              { question: "Who developed TypeScript?", answer: "Microsoft." },
+            ],
+          },
+          {
+            subchapterName: "Setup",
+            flashcards: [
+              { question: "What is the file extension for TypeScript files?", answer: ".ts" },
+              { question: "How do you install TypeScript?", answer: "Using npm: npm install -g typescript" },
+              { question: "How to compile a TypeScript file?", answer: "tsc filename.ts" },
+            ],
+          },
         ],
       },
       {
         chapterName: "Basic Types",
-        flashcards: [
-          { question: "Name some basic types in TypeScript.", answer: "string, number, boolean, null, undefined." },
-          { question: "What type is used for dynamic content?", answer: "`any` type." },
-          { question: "What does `unknown` type represent?", answer: "A type-safe counterpart of `any`." },
-          { question: "How to define an array of numbers?", answer: "`number[]` or `Array<number>`" },
+        subchapters: [
           {
-            question: "Can you assign `undefined` to a number type?",
-            answer: "Not unless using `| undefined` union type.",
+            subchapterName: "Primitive Types",
+            flashcards: [
+              { question: "Name some basic types in TypeScript.", answer: "string, number, boolean, null, undefined." },
+              { question: "What type is used for dynamic content?", answer: "any type." },
+            ],
+          },
+          {
+            subchapterName: "Complex Types",
+            flashcards: [
+              { question: "What does unknown type represent?", answer: "A type-safe counterpart of any." },
+              { question: "How to define an array of numbers?", answer: "number[] or Array<number>" },
+              {
+                question: "Can you assign undefined to a number type?",
+                answer: "Not unless using | undefined union type.",
+              },
+            ],
           },
         ],
       },
       {
         chapterName: "Functions",
-        flashcards: [
-          { question: "How do you specify a return type?", answer: "After the parameter list, like `(): string`." },
-          { question: "What is a default parameter?", answer: "A parameter with a default value." },
+        subchapters: [
           {
-            question: "What is the syntax for a function with optional parameters?",
-            answer: "Use `?`, like `name?: string`.",
+            subchapterName: "Function Basics",
+            flashcards: [
+              { question: "How do you specify a return type?", answer: "After the parameter list, like (): string." },
+              { question: "What is a default parameter?", answer: "A parameter with a default value." },
+            ],
           },
-          { question: "Can functions be typed separately?", answer: "Yes, using function types." },
-          { question: "What does `void` mean as a return type?", answer: "The function doesn't return anything." },
+          {
+            subchapterName: "Advanced Functions",
+            flashcards: [
+              {
+                question: "What is the syntax for a function with optional parameters?",
+                answer: "Use ?, like name?: string.",
+              },
+              { question: "Can functions be typed separately?", answer: "Yes, using function types." },
+              { question: "What does void mean as a return type?", answer: "The function doesn't return anything." },
+            ],
+          },
         ],
       },
       {
         chapterName: "Interfaces and Types",
-        flashcards: [
-          { question: "What is an interface used for?", answer: "To define object shapes/contracts." },
-          { question: "How do you extend an interface?", answer: "Using `extends` keyword." },
-          { question: "Can interfaces have optional properties?", answer: "Yes, with `?` syntax." },
+        subchapters: [
           {
-            question: "What's the difference between type and interface?",
-            answer: "Types can use unions, interfaces can't.",
+            subchapterName: "Interface Basics",
+            flashcards: [
+              { question: "What is an interface used for?", answer: "To define object shapes/contracts." },
+              { question: "How do you extend an interface?", answer: "Using extends keyword." },
+            ],
           },
-          { question: "Can types be extended?", answer: "Yes, with intersections like `&`." },
-
+          {
+            subchapterName: "Advanced Interfaces",
+            flashcards: [
+              { question: "Can interfaces have optional properties?", answer: "Yes, with ? syntax." },
+              {
+                question: "What's the difference between type and interface?",
+                answer: "Types can use unions, interfaces can't.",
+              },
+              { question: "Can types be extended?", answer: "Yes, with intersections like &." },
+            ],
+          },
         ],
-
       },
-
       {
         chapterName: "Advanced Features",
-        flashcards: [
-          { question: "What are generics?", answer: "Tools for writing reusable code with types." },
-          { question: "What does `readonly` do?", answer: "Prevents modification of a property." },
-          { question: "What is type assertion?", answer: "Forcibly treating a value as a specific type." },
-          { question: "What is a tuple?", answer: "An array with fixed number of elements and types." },
-          { question: "What is the `never` type?", answer: "Represents values that never occur." },
+        subchapters: [
+          {
+            subchapterName: "Generics",
+            flashcards: [
+              { question: "What are generics?", answer: "Tools for writing reusable code with types." },
+              { question: "What does readonly do?", answer: "Prevents modification of a property." },
+            ],
+          },
+          {
+            subchapterName: "Special Types",
+            flashcards: [
+              { question: "What is type assertion?", answer: "Forcibly treating a value as a specific type." },
+              { question: "What is a tuple?", answer: "An array with fixed number of elements and types." },
+              { question: "What is the never type?", answer: "Represents values that never occur." },
+            ],
+          },
         ],
       },
     ],
@@ -230,56 +283,102 @@ export default function FlashcardPage() {
 
   // State
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0)
+  const [currentSubchapterIndex, setCurrentSubchapterIndex] = useState(0)
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [favorited, setFavorited] = useState(false)
   const [isChanging, setIsChanging] = useState(false)
-  const [completedCards, setCompletedCards] = useState<boolean[][]>(
-    myCourse.chapters.map((chapter) => Array(chapter.flashcards.length).fill(false)),
+  const [expandedChapters, setExpandedChapters] = useState<Record<number, boolean>>({})
+
+  // Initialize completedCards with the new structure
+  const [completedCards, setCompletedCards] = useState<boolean[][][]>(
+    myCourse.chapters.map((chapter) =>
+      chapter.subchapters.map((subchapter) => Array(subchapter.flashcards.length).fill(false)),
+    ),
   )
 
   // Current flashcard
   const currentChapter = myCourse.chapters[currentChapterIndex]
-  const currentFlashcard = currentChapter.flashcards[currentCardIndex]
+  const currentSubchapter = currentChapter.subchapters[currentSubchapterIndex]
+  const currentFlashcard = currentSubchapter.flashcards[currentCardIndex]
 
   // Calculate total flashcards
-  const totalFlashcards = myCourse.chapters.reduce((sum, chapter) => sum + chapter.flashcards.length, 0)
+  const totalFlashcards = myCourse.chapters.reduce(
+    (sum, chapter) =>
+      sum + chapter.subchapters.reduce((subSum, subchapter) => subSum + subchapter.flashcards.length, 0),
+    0,
+  )
 
-  // Calculate current flashcard number (across all chapters)
+  // Calculate current flashcard number (across all chapters and subchapters)
   const getCurrentCardNumber = () => {
     let cardNumber = 1
+
+    // Count cards in previous chapters
     for (let i = 0; i < currentChapterIndex; i++) {
-      cardNumber += myCourse.chapters[i].flashcards.length
+      for (let j = 0; j < myCourse.chapters[i].subchapters.length; j++) {
+        cardNumber += myCourse.chapters[i].subchapters[j].flashcards.length
+      }
     }
+
+    // Count cards in previous subchapters of current chapter
+    for (let j = 0; j < currentSubchapterIndex; j++) {
+      cardNumber += currentChapter.subchapters[j].flashcards.length
+    }
+
+    // Add current card index
     cardNumber += currentCardIndex
+
     return cardNumber
   }
 
   // Calculate progress
   const calculateProgress = () => {
     // Overall progress
-    const totalCompleted = completedCards.flat().filter(Boolean).length
+    const totalCompleted = completedCards.flat(2).filter(Boolean).length
     const overallProgress = (totalCompleted / totalFlashcards) * 100
 
     // Chapter progress
-    const chapterProgress = myCourse.chapters.map((chapter, idx) => {
-      const completed = completedCards[idx].filter(Boolean).length
-      const total = chapter.flashcards.length
-      return (completed / total) * 100
+    const chapterProgress = myCourse.chapters.map((chapter, chIdx) => {
+      const totalChapterCards = chapter.subchapters.reduce((sum, subchapter) => sum + subchapter.flashcards.length, 0)
+
+      let completedChapterCards = 0
+      for (let i = 0; i < chapter.subchapters.length; i++) {
+        completedChapterCards += completedCards[chIdx][i].filter(Boolean).length
+      }
+
+      return (completedChapterCards / totalChapterCards) * 100
     })
 
-    return { overall: overallProgress, chapters: chapterProgress }
+    // Subchapter progress
+    const subchapterProgress = myCourse.chapters.map((chapter, chIdx) =>
+      chapter.subchapters.map((subchapter, subIdx) => {
+        const completed = completedCards[chIdx][subIdx].filter(Boolean).length
+        const total = subchapter.flashcards.length
+        return (completed / total) * 100
+      }),
+    )
+
+    return { overall: overallProgress, chapters: chapterProgress, subchapters: subchapterProgress }
   }
 
   const progress = calculateProgress()
 
+  // Toggle chapter expansion
+  const toggleChapterExpansion = (chapterIdx: number) => {
+    setExpandedChapters((prev) => ({
+      ...prev,
+      [chapterIdx]: !prev[chapterIdx],
+    }))
+  }
+
   // Handle navigation with animation
-  const changeCard = (chapterIdx: number, cardIdx: number) => {
+  const changeCard = (chapterIdx: number, subchapterIdx: number, cardIdx: number) => {
     setIsChanging(true)
     setFlipped(false)
 
     setTimeout(() => {
       setCurrentChapterIndex(chapterIdx)
+      setCurrentSubchapterIndex(subchapterIdx)
       setCurrentCardIndex(cardIdx)
       setIsChanging(false)
     }, 300)
@@ -287,44 +386,59 @@ export default function FlashcardPage() {
 
   const handlePrevious = () => {
     if (currentCardIndex > 0) {
-      // Previous card in same chapter
-      changeCard(currentChapterIndex, currentCardIndex - 1)
+      // Previous card in same subchapter
+      changeCard(currentChapterIndex, currentSubchapterIndex, currentCardIndex - 1)
+    } else if (currentSubchapterIndex > 0) {
+      // Last card of previous subchapter
+      const prevSubchapterIndex = currentSubchapterIndex - 1
+      const prevSubchapterLastCardIndex = currentChapter.subchapters[prevSubchapterIndex].flashcards.length - 1
+      changeCard(currentChapterIndex, prevSubchapterIndex, prevSubchapterLastCardIndex)
     } else if (currentChapterIndex > 0) {
-      // Last card of previous chapter
+      // Last card of last subchapter of previous chapter
       const prevChapterIndex = currentChapterIndex - 1
-      const prevChapterLastCardIndex = myCourse.chapters[prevChapterIndex].flashcards.length - 1
-      changeCard(prevChapterIndex, prevChapterLastCardIndex)
+      const prevChapter = myCourse.chapters[prevChapterIndex]
+      const prevSubchapterIndex = prevChapter.subchapters.length - 1
+      const prevSubchapterLastCardIndex = prevChapter.subchapters[prevSubchapterIndex].flashcards.length - 1
+      changeCard(prevChapterIndex, prevSubchapterIndex, prevSubchapterLastCardIndex)
     } else {
-      // Wrap to last card of last chapter
+      // Wrap to last card of last subchapter of last chapter
       const lastChapterIndex = myCourse.chapters.length - 1
-      const lastCardIndex = myCourse.chapters[lastChapterIndex].flashcards.length - 1
-      changeCard(lastChapterIndex, lastCardIndex)
+      const lastChapter = myCourse.chapters[lastChapterIndex]
+      const lastSubchapterIndex = lastChapter.subchapters.length - 1
+      const lastCardIndex = lastChapter.subchapters[lastSubchapterIndex].flashcards.length - 1
+      changeCard(lastChapterIndex, lastSubchapterIndex, lastCardIndex)
     }
   }
 
   const handleNext = () => {
     // Mark current card as completed
     const newCompletedCards = [...completedCards]
-    newCompletedCards[currentChapterIndex][currentCardIndex] = true
+    newCompletedCards[currentChapterIndex][currentSubchapterIndex][currentCardIndex] = true
     setCompletedCards(newCompletedCards)
 
-    if (currentCardIndex < currentChapter.flashcards.length - 1) {
-      // Next card in same chapter
-      changeCard(currentChapterIndex, currentCardIndex + 1)
+    if (currentCardIndex < currentSubchapter.flashcards.length - 1) {
+      // Next card in same subchapter
+      changeCard(currentChapterIndex, currentSubchapterIndex, currentCardIndex + 1)
+    } else if (currentSubchapterIndex < currentChapter.subchapters.length - 1) {
+      // First card of next subchapter
+      changeCard(currentChapterIndex, currentSubchapterIndex + 1, 0)
     } else if (currentChapterIndex < myCourse.chapters.length - 1) {
-      // First card of next chapter
-      changeCard(currentChapterIndex + 1, 0)
+      // First card of first subchapter of next chapter
+      changeCard(currentChapterIndex + 1, 0, 0)
     } else {
-      // Wrap to first card of first chapter
-      changeCard(0, 0)
+      // Wrap to first card of first subchapter of first chapter
+      changeCard(0, 0, 0)
     }
   }
 
   // Handle shuffle
   const handleShuffle = () => {
     const randomChapterIndex = Math.floor(Math.random() * myCourse.chapters.length)
-    const randomCardIndex = Math.floor(Math.random() * myCourse.chapters[randomChapterIndex].flashcards.length)
-    changeCard(randomChapterIndex, randomCardIndex)
+    const randomChapter = myCourse.chapters[randomChapterIndex]
+    const randomSubchapterIndex = Math.floor(Math.random() * randomChapter.subchapters.length)
+    const randomSubchapter = randomChapter.subchapters[randomSubchapterIndex]
+    const randomCardIndex = Math.floor(Math.random() * randomSubchapter.flashcards.length)
+    changeCard(randomChapterIndex, randomSubchapterIndex, randomCardIndex)
   }
 
   // Handle card flip
@@ -337,15 +451,14 @@ export default function FlashcardPage() {
     setFavorited(!favorited)
   }
 
-  // Handle close
-  const handleClose = () => {
-    // In a real app, this would navigate away or close the modal
-    console.log("Close clicked")
-  }
-
   // Handle chapter selection
   const handleChapterSelect = (chapterIndex: number) => {
-    changeCard(chapterIndex, 0)
+    toggleChapterExpansion(chapterIndex)
+  }
+
+  // Handle subchapter selection
+  const handleSubchapterSelect = (chapterIndex: number, subchapterIndex: number) => {
+    changeCard(chapterIndex, subchapterIndex, 0)
   }
 
   return (
@@ -353,44 +466,79 @@ export default function FlashcardPage() {
       {/* Sidebar */}
       <div className="w-[18rem] border-r mt-5 p-4 hidden md:block bg-white">
         <div className="mb-6">
-          
           <h2 className="font-black text-slate-800 text-md mb-2">{myCourse.courseName}</h2>
-       
           <Progress value={progress.overall} className="h-1.5 mt-4 rounded-full mb-4" />
         </div>
 
-        {/* Chapters list */}
-        <div className="space-y-2">
-          {myCourse.chapters.map((chapter, chapterIdx) => (
-            <div key={chapterIdx} className="space-y-1">
-              <div
-                className="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 rounded px-1"
-                onClick={() => handleChapterSelect(chapterIdx)}
-              >
-                <ChevronRight className="h-4 w-4 font-black text-slate-800 " />
-                <span className="text-sm font-bold text-slate-800 d">{chapter.chapterName}</span>
+        {/* Chapters list with subchapters */}
+        <div className="flex h-full flex-col justify-between">
+          <div className="space-y-2">
+            {myCourse.chapters.map((chapter, chapterIdx) => (
+              <div key={chapterIdx} className="space-y-1">
                 <div
-                 className={cn(
-                  "ml-auto w-5 h-5 rounded-full  border-4  flex items-center justify-center",
-                  progress.chapters[chapterIdx] === 100
-                    ? "bg-green-500 border-green-500"
-                    : progress.chapters[chapterIdx] > 0
-                      ? "bg-white border-green-500"
-                      : "bg-white border-gray-300"
-                )}
-                
-                />
-              </div>
-              {/* Chapter progress bar */}
-              <div className="ml-6 mr-2 rounded-full">
-                <Progress value={progress.chapters[chapterIdx]} className="h-1 rounded-full" />
-              </div>
-            </div>
-          ))}
-        </div>
+                  className="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 rounded px-1"
+                  onClick={() => handleChapterSelect(chapterIdx)}
+                >
+                  {expandedChapters[chapterIdx] ? (
+                    <ChevronDown className="h-4 w-4 font-black text-slate-800" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 font-black text-slate-800" />
+                  )}
+                  <span className="text-sm font-bold text-slate-800">{chapter.chapterName}</span>
+                  <div
+                    className={cn(
+                      "ml-auto w-5 h-5 rounded-full border-4 flex items-center justify-center",
+                      progress.chapters[chapterIdx] === 100
+                        ? "bg-green-500 border-green-500"
+                        : progress.chapters[chapterIdx] > 0
+                          ? "bg-white border-green-500"
+                          : "bg-white border-gray-300",
+                    )}
+                  />
+                </div>
 
-        <div>
-          + add notes
+                {/* Chapter progress bar */}
+                <div className="ml-6 mr-2 rounded-full">
+                  <Progress value={progress.chapters[chapterIdx]} className="h-1 rounded-full" />
+                </div>
+
+                {/* Subchapters dropdown */}
+                {expandedChapters[chapterIdx] && (
+                  <div className="ml-6 space-y-1 mt-2">
+                    {chapter.subchapters.map((subchapter, subchapterIdx) => {
+                      // Calculate completed cards for this subchapter
+                      const completedCount = completedCards[chapterIdx][subchapterIdx].filter(Boolean).length
+                      const totalCount = subchapter.flashcards.length
+
+                      return (
+                        <div key={subchapterIdx}>
+                          <div
+                            className={cn(
+                              "flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 rounded px-1",
+                              currentChapterIndex === chapterIdx &&
+                                currentSubchapterIndex === subchapterIdx &&
+                                "bg-gray-100",
+                            )}
+                            onClick={() => handleSubchapterSelect(chapterIdx, subchapterIdx)}
+                          >
+                            <span className="text-xs font-medium text-slate-700">{subchapter.subchapterName}</span>
+                            <span className="ml-auto text-xs font-medium text-slate-600">
+                              {completedCount}/{totalCount}
+                            </span>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mb-20 flex flex-col gap-2 justify-center items-center">
+            <div className="text-xm font-bold">Add Notes</div>
+            <div className="text-xm font-bold bg-black text-white px-2 rounded-mid">Favourites</div>
+          </div>
         </div>
       </div>
 
@@ -398,47 +546,37 @@ export default function FlashcardPage() {
       <div className="flex-1 flex flex-col">
         {/* Flashcard container */}
         <div className="flex-1 p-6 max-w-3xl mx-auto w-full flex flex-col">
-          <div className=" rounded-lg  flex-1 flex flex-col bg-white overflow-hidden">
+          <div className="rounded-lg flex-1 flex flex-col bg-white overflow-hidden">
             {/* Card header */}
-            <div className="flex justify-center flex-col items-center p-4 ">
-              <div className="text-sm font-black text-gray-600">
-              {getCurrentCardNumber()} / {totalFlashcards}
+            <div className="flex px-8 justify-between">
+              <div></div>
+              <div className="flex justify-center flex-col items-center p-4">
+                <div className="text-sm font-black text-gray-600">
+                  {getCurrentCardNumber()} / {totalFlashcards}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-white text-gray-800 border-2 border-gray-400 text-xs font-bold px-3 py-1 rounded-full">
+                    {currentChapter.chapterName} - {currentSubchapter.subchapterName}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-white text-gray-800 border-2 border-gray-400 text-xs font-bold px-3 py-1 rounded-full">
-                {currentChapter.chapterName}
-                </span>
-                {/* <button onClick={handleClose} className="text-gray-400 hover:text-gray-600">
-                  <X className="h-5 w-5" />
-                </button> */}
-              </div>
-            </div>
-            <div className="flex justify-between items-center p-4 border-b">
-              <div className="text-sm text-gray-600">
-              
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">
-                
-                </span>
-                <button onClick={handleClose} className="text-gray-400 hover:text-gray-600">
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
+              <Link href="/course/course-details" className="h-full flex items-center">
+                <X strokeWidth={3} className="w-6 h-5 font-bold hover:text-red-600 hover:cursor-pointer" />
+              </Link>
             </div>
 
             {/* Card content with 3D flip */}
-            <div className="flex-1 flex flex-col font-black text-slate-800  items-center justify-center p-8 relative">
+            <div className="flex-1 flex flex-col font-black text-slate-800 items-center justify-center p-8 relative">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`${currentChapterIndex}-${currentCardIndex}`}
+                  key={`${currentChapterIndex}-${currentSubchapterIndex}-${currentCardIndex}`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
                   className="w-full h-full"
                 >
-                  <div className="w-full h-full min-h-[300px] font-semibold text-slate-800  shadow-xl rounded-xl overflow-hidden">
+                  <div className="w-full h-full min-h-[200px] font-semibold text-slate-800 shadow-xl rounded-xl overflow-hidden">
                     <FlashcardWithFlip
                       front={currentFlashcard.question}
                       back={currentFlashcard.answer}
@@ -453,42 +591,41 @@ export default function FlashcardPage() {
             </div>
 
             {/* Card footer */}
-            <div className="flex items-center justify-between p-4 ">
-  {/* Left spacer */}
-  <div className="w-20" />
+            <div className="flex items-center justify-between p-4">
+              {/* Left spacer */}
+              <div className="w-20" />
 
-  {/* Centered arrow buttons */}
-  <div className="flex space-x-2">
-    <div
-      onClick={handlePrevious}
-      className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
-    >
-      <ArrowLeft className="w-6 h-5 font-bold" />
-    </div>
+              {/* Centered arrow buttons */}
+              <div className="flex space-x-2">
+                <div
+                  onClick={handlePrevious}
+                  className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                >
+                  <ArrowLeft className="w-6 h-5 font-bold" />
+                </div>
 
-    <div
-      onClick={handleNext}
-      className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
-    >
-      <ArrowRight className="w-6 h-5 font-bold" />
-    </div>
-  </div>
+                <div
+                  onClick={handleNext}
+                  className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                >
+                  <ArrowRight className="w-6 h-5 font-bold" />
+                </div>
+              </div>
 
-  {/* Right-aligned Shuffle */}
-  <div className="flex gap-2">
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={handleShuffle}
-      disabled={isChanging}
-      className="flex items-center gap-1 hover:bg-gray-100 transition-colors"
-    >
-      <Shuffle className="h-4 w-4" />
-      <span className="hidden sm:inline text-sm font-bold">Shuffle</span>
-    </Button>
-  </div>
-</div>
-
+              {/* Right-aligned Shuffle */}
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleShuffle}
+                  disabled={isChanging}
+                  className="flex items-center gap-1 hover:bg-gray-100 transition-colors"
+                >
+                  <Shuffle className="h-4 w-4" />
+                  <span className="hidden sm:inline text-sm font-bold">Shuffle</span>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
