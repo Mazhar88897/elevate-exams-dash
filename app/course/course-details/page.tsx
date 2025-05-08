@@ -18,7 +18,7 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="bg-gray-50 p-4">
+    <div className="p-4">
      <div className="px-5 pt-10 md:pt-5">
     <Access />
     </div>
@@ -27,7 +27,7 @@ export default function CoursePage() {
       <div className="flex-1 px-4">
         <div className="mb-4">
           <h1 className="text-lg font-black ">Explore the Gemini API</h1>
-          <div className="flex items-center text-sm text-gray-600 mt-1">
+          <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 mt-1">
             <span className="flex items-center mr-4 font-bold">
             <Clock className="w-4 h-4 mr-1" strokeWidth={3} />
 
@@ -40,7 +40,7 @@ export default function CoursePage() {
           </div>
         </div>
 
-        <div className="h-64 rounded-lg overflow-hidden mb-6 border- bg-white">
+        <div className="h-64 rounded-lg overflow-hidden mb-6 border-">
           <div className="aspect-video flex items-center justify-center">
             <Image
               src="/animation.png"
@@ -78,22 +78,22 @@ export default function CoursePage() {
           </div>
 
           {activeTab === "about" && (
-            <div className="bg-white border-2 p-6 rounded-mid shadow-sm">
+            <div className=" border-2 p-6 rounded-mid shadow-sm">
               <h2 className="text-md font-bold mb-4">About the Course</h2>
-              <p className="text-gray-700 text-sm mb-4">
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                 Colab notebooks allow you to combine executable code and rich text in a single document, along with
                 images, HTML, LaTeX and more. When you create your own Colab notebooks, they are stored in your Google
                 Drive account. You can easily share your Colab notebooks with co-workers or friends, allowing them to
                 comment on your notebooks or even edit them.
               </p>
-              <p className="text-gray-700 text-sm mb-4">
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                 Colab notebooks allow you to combine executable code and rich text in a single document, along with
                 images, HTML, LaTeX and more. When you create your own Colab notebooks, they are stored in your Google
                 Drive account.
               </p>
 
               <h3 className="text-md font-bold mt-6 mb-4">What will you learn here</h3>
-              <ul className="text-gray-700  text-sm">
+              <ul className="text-gray-700 dark:text-gray-300 text-sm">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-green-800 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                     <path
@@ -141,56 +141,56 @@ export default function CoursePage() {
           )}
 
           {activeTab === "announcement" && (
-            <div className="bg-white p-6 border-2 rounded-mid shadow-sm">
+            <div className=" p-6 border-2 rounded-mid shadow-sm">
               <h2 className="text-md font-bold mb-4">Announcement</h2>
 
               <div className="space-y-4">
-                <div className="bg-gray-100 p-4 rounded-mid">
+                <div className=" p-4 rounded-mid">
              
                     
 
                     
                     <div className="flex ">
                     <Megaphone className="w-5 h-5 mr-2" strokeWidth={3} />
-                      <h3 className="font-bold text-gray-900">Do you know ?</h3>
+                      <h3 className="font-bold text-gray-900 dark:text-gray-300">Do you know ?</h3>
                      
                     </div>
                     
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                         Colab notebooks with co-workers or friends, allowing them to comment on your notebooks or even
                         edit them.
                       </p>
                 
                 </div>
 
-                <div className="bg-gray-100 p-4 rounded-mid">
+                <div className="p-4 rounded-mid">
              
                     
 
                     
                     <div className="flex ">
                     <Megaphone className="w-5 h-5 mr-2" strokeWidth={3} />
-                      <h3 className="font-bold text-gray-900">Do you know ?</h3>
+                      <h3 className="font-bold text-gray-900 dark:text-gray-300">Do you know ?</h3>
                      
                     </div>
                     
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                         Colab notebooks with co-workers or friends, allowing them to comment on your notebooks or even
                         edit them.
                       </p>
                 
-                </div><div className="bg-gray-100 p-4 rounded-mid">
+                </div><div className=" p-4 rounded-mid">
              
                     
 
                     
              <div className="flex ">
              <Megaphone className="w-5 h-5 mr-2" strokeWidth={3} />
-               <h3 className="font-bold text-gray-900">Do you know ?</h3>
+               <h3 className="font-bold text-gray-900 dark:text-gray-300">Do you know ?</h3>
               
              </div>
              
-             <p className="mt-1 text-sm text-gray-600">
+             <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                  Colab notebooks with co-workers or friends, allowing them to comment on your notebooks or even
                  edit them.
                </p>
@@ -202,13 +202,13 @@ export default function CoursePage() {
         </div>
       </div>
 
-      <div className="w-full  bg-white h-[100vh] mb-10 md:w-96 py-4 border-2  border-gray-200">
+      <div className="w-full   h-full sm:h-[80vh] mb-10 md:w-96 py-4 border-2 dark:border-gray-800  border-gray-200">
         <div className=" rounded-lg shadow-sm p-4">
           <h2 className="font-bold text-md mb-4">Course Content & Chapters</h2>
 
           <div className="space-y-2">
             {[1, 2, 3, 4, 5, 6, 7].map((chapter, index) => (
-              <div key={index} className="border border-gray-200 rounded-md overflow-hidden">
+              <div key={index} className="border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden">
                 <button
                   onClick={() => toggleChapter(index)}
                   className="w-full flex items-center justify-between p-3 text-left"
@@ -233,8 +233,8 @@ export default function CoursePage() {
                   )}
                 </button>
                 {expandedChapter === index  && (
-                  <div className="p-3 bg-gray-50 border-t border-gray-200">
-                    <ul className="space-y-2 text-sm font font-semibold text-slate-600">
+                  <div className="p-3 bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-800">
+                    <ul className="space-y-2 text-sm font font-semibold text-slate-600 dark:text-slate-100">
                       <li>01 Introduction</li>
                       <li>02 Introduction</li>
                       <li>03 Introduction</li>

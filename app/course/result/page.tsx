@@ -46,24 +46,24 @@ insight highlights</p>
 
   <div className="space-y-4 mb-8 mt-20 ">
     <div className="flex justify-between items-center">
-    < Link href="/course/result/stats" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>Quiz Stats</Link>
+    < Link href="/course/result/stats" className="w-full border-slate-800 dark:border-slate-300 dark:text-slate-300 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 dark:text-slate-300 text-sm font-bold" onClick={()=>{}}>Quiz Stats</Link>
    
     </div>
 
     <div className="flex justify-between items-center">
-    < Link href="/course/result/stats" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>Assessment Stats</Link>
+    < Link href="/course/result/stats" className="w-full border-slate-800 dark:border-slate-300 dark:text-slate-300 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 dark:text-slate-300 text-sm font-bold" onClick={()=>{}}>Assessment Stats</Link>
       
     </div>
 
     
   </div>
 
-  <div className="space-y-4 text-sm font-semibold text-slate-800">
+  <div className="space-y-4 text-sm font-semibold text-slate-800 dark:text-slate-300">
     <p>Each figure represents an important aspect of our operations, helping you quickly assess outcomes, identify patterns, and stay informed about ongoing progress.</p>
     <p>
     These stats provide valuable insights into how we&apos;re progressing and where opportunities for improvement lie.
     </p>
-    <p className="font-medium text-slate-400">Warning: You will NOT see these stats if exams are not attempted.</p>
+    <p className="font-medium text-slate-400 dark:text-slate-300">Warning: You will NOT see these stats if exams are not attempted.</p>
   </div>
   </div>
 </div>)

@@ -509,7 +509,7 @@ function QuizPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
       <div className="w-64 border-r p-4 hidden md:block">
         <div className="mb-6">
@@ -525,7 +525,7 @@ function QuizPage() {
             <div key={chapterIdx} className="space-y-1">
               {/* Chapter header */}
               <button
-                className="flex items-center justify-between w-full py-2 text-left hover:bg-gray-50 rounded-md transition-colors"
+                className="flex items-center justify-between w-full py-2 text-left  rounded-md transition-colors"
                 onClick={() => toggleChapter(chapterIdx)}
               >
                 <div className="flex items-center gap-2">
@@ -558,9 +558,9 @@ function QuizPage() {
                     <div
                       key={subChapterIdx}
                       className={cn(
-                        "pl-2 border-l border-gray-200 py-1.5 hover:bg-gray-50 rounded-md px-2 cursor-pointer",
+                        "pl-2  border-gray-200 py-1.5 rounded-md px-2 cursor-pointer",
                         currentChapterIndex === chapterIdx && currentSubChapterIndex === subChapterIdx
-                          ? "bg-gray-50 text-slate-800"
+                          ? "font-black text-white text-sm"
                           : "",
                       )}
                       onClick={() => navigateToQuestion(chapterIdx, subChapterIdx, 0)}
@@ -596,7 +596,7 @@ function QuizPage() {
         </div>
       </div>
 
-      {/* Main content */}
+      {/* Main content */}        
       <div className="flex-1 m-4 mt-12 flex flex-col">
         {/* Premium banner */}
         <div className="max-w-5xl mx-auto w-full">
@@ -604,24 +604,24 @@ function QuizPage() {
        </div>
         {/* Progress bar */}
         <div className="max-w-3xl mx-auto w-full px-4 rounded-mid">
-          <Progress value={progress} className="h-1.5 bg-gray-200 rounded-mid" />
+          <Progress value={progress} className="h-1.5 bg-gray-200 dark:bg-gray-800 rounded-mid" />
         </div>
 
         {/* Question content */}
         <div className="flex-1 p-6 max-w-3xl mx-auto w-full">
           <div className="flex   justify-between items-center mb-4">
-            <div className="text-sm font-black text-gray-600">
+            <div className="text-sm font-black text-gray-600 dark:text-gray-300">
               Question <span className="text-green-600">{getQuestionNumber()}</span> of <span className="text-green-600">{totalQuestions}</span> 
             </div>
             <div className="flex ">
-              <div className="text-gray-600 flex items-center " onClick={handleSkip}>
+              <div className="text-gray-600 dark:text-gray-300 flex items-center " onClick={handleSkip}>
               <SkipForward className="h-3 mr-1 w-3 " strokeWidth={3} />
                 <span className="text-sm font-bold">Skip</span>
               </div>
               <div
                 
                 className={cn(
-                  "text-gray-600 mx-3 flex items-center ",
+                  "text-gray-600 dark:text-gray-300 mx-3 flex items-center ",
                   flaggedQuestions[currentChapterIndex][currentQuestionIndex] && "text-yellow-500",
                 )}
                 onClick={handleFlag}
@@ -640,7 +640,7 @@ function QuizPage() {
                 onClick={handleFlag}
               >
                
-                <span className="text-sm flex items-center justify-center border-2 border-white rounded-mid font-black">Quit            <X className="h-4 w-4 mr-1 " strokeWidth={3} /> </span>
+                <span className="text-sm flex items-center justify-center  rounded-mid font-black">Quit            <X className="h-4 w-4 mr-1 " strokeWidth={3} /> </span>
              
       
                
@@ -662,8 +662,8 @@ function QuizPage() {
                     "border rounded-md p-3 cursor-pointer",
                     selectedOption === option &&
                       option === currentQuestion.correctOption &&
-                      "bg-green-50 border-green-200",
-                    selectedOption === option && option !== currentQuestion.correctOption && "bg-red-50 border-red-200",
+                      "bg-green-50 dark:bg-black border-green-200",
+                    selectedOption === option && option !== currentQuestion.correctOption && "bg-red-50 dark:bg-black border-red-200",
                     !isAnswered && "hover:border-gray-400",
                   )}
                   onClick={() => handleOptionSelect(option)}
@@ -683,7 +683,7 @@ function QuizPage() {
 
             {/* Explanation */}
             {isAnswered && (
-              <div className="mt-4 bg-green-50 border border-green-200 rounded-md p-4">
+              <div className="mt-4 bg-green-50 dark:bg-black border border-green-200 rounded-md p-4">
                 <h3 className="font-semibold text-sm mb-2">Explanation:</h3>
                 <p className="font-semibold text-sm ">{currentQuestion.explanation}</p>
               </div>
@@ -692,15 +692,15 @@ function QuizPage() {
 
           {/* Continue button */}
           {isAnswered && (
-            <div className="w-32 text-sm text-center p-1 text-slate-800 border font-black border-gray-300 rounded-mid" onClick={handleContinue}>
+            <div className="w-32 text-sm text-center p-1 text-slate-800 dark:text-slate-300 border font-black border-gray-300 rounded-mid" onClick={handleContinue}>
               Continue
             </div>
           )}
 
           {/* Report issue */}
           <div className="mt-8 text-sm text-gray-500 flex items-center gap-1">
-            <span className="text-xs text-gray-700 font-bold">have issue in this question?</span>
-            <button onClick={openSupportModal}  className="text-black text-xs font-black flex items-center gap-1">
+            <span className="text-xs text-gray-700 dark:text-slate-300 font-bold">have issue in this question?</span>
+            <button onClick={openSupportModal}  className="text-black dark:text-white text-xs font-black flex items-center gap-1">
               report an issue
               <AlertTriangle className="h-3 w-3" />
             </button>

@@ -134,7 +134,7 @@ export default function NotesApp() {
             <p className="text-sm font-bold">
               Total Notes: <span className="font-bold">{notes.length}</span>
             </p>
-            <Button variant="default" className="bg-purple-800 rounded-mid font-bold hover:bg-purple-900" onClick={openAddModal}>
+            <Button variant="default" className="bg-purple-800 text-white rounded-mid font-bold hover:bg-purple-900" onClick={openAddModal}>
               + Add Note
             </Button>
           </div>
@@ -144,11 +144,11 @@ export default function NotesApp() {
       {/* Notes List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredNotes.map((note) => (
-          <div key={note.id} className="border rounded-mid py-4 bg-white">
+          <div key={note.id} className="border rounded-mid py-4">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-bold text-sm px-4">{note.title}</h3>
               <DropdownMenu>
-                <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+                <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-full ">
                   <MoreHorizontal size={16} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

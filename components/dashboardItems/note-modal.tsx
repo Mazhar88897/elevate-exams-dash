@@ -57,10 +57,10 @@ export default function NoteModal({ isOpen, onClose, onSave, note, isEditing }: 
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg w-full max-w-md p-6">
+      <div className="bg-white dark:bg-background border border-gray-300 dark:border-gray-700 rounded-lg w-full max-w-md p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">{isEditing ? "Edit Note" : "Add New Note"}</h2>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
+          <button onClick={onClose} className="p-1 rounded-full 0">
             <X size={20} />
           </button>
         </div>
@@ -75,7 +75,7 @@ export default function NoteModal({ isOpen, onClose, onSave, note, isEditing }: 
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full p-2 border rounded-md  focus:outline-none focus:ring-2 focus:ring-purple-500"
               placeholder="Note title"
               required
             />

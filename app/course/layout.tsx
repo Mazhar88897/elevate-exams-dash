@@ -18,11 +18,10 @@ import {
   Bot,
   FileIcon,
   LogOut,
-  Palette,
   MonitorPlay,
   BookText,
-  HomeIcon
-  
+  HomeIcon,
+  MoreHorizontal
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -36,6 +35,10 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import Image from "next/image"
+import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { Card, CardContent } from "@/components/ui/card"
+import { NotificationModal } from "@/components/shared/notification-modal"
 
 interface SidebarProps {
   className?: string
@@ -72,7 +75,7 @@ export function Sidebar({ className }: SidebarProps) {
   }
 
   const handleMenuItemClick = (label: string) => {
-    if (label === "Notifications") {
+    if (label === "Notification") {
       setNotificationOpen(true)
     } else if (label === "Logout") {
       setLogoutOpen(true)
@@ -84,11 +87,11 @@ export function Sidebar({ className }: SidebarProps) {
     { icon: Home, label: "Home", link: "/dashboard" },
     { icon: Users, label: "My learning", link: "/dashboard" },
     { icon: FileText, label: "Add Courses", hasSeparator: true, link: "/dashboard" },
-    { icon: Palette, label: "Theme", link: "/dashboard" },
+    { component: ThemeToggle, label: "Theme" },
     { icon: User, label: "Account", link: "/dashboard/account" },
     { icon: HelpCircle, label: "Help", hasSeparator: true, link: "/dashboard/help" },
-    { icon: Bell, label: "Notification" }, // no link
-    { icon: LogOut, label: "Logout" }, // no link
+    { icon: Bell, label: "Notification" },
+    { icon: LogOut, label: "Logout" },
   ]
 
   function getRandomColor(): string {
@@ -125,7 +128,7 @@ export function Sidebar({ className }: SidebarProps) {
       items: [
         { icon: Bot, label: "AI Chatbot", link: "" },
         { icon: BookText, label: "Notes", link: "/course/notes" },
-        { icon: MonitorPlay, label: "Tutorial", link: "/course/notes" },
+        { icon: MonitorPlay, label: "Tutorial", link: "/course/tutorial" },
       ],
     },
   ]
@@ -145,14 +148,14 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Sidebar Container */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-40  flex transition-transform duration-300 ease-in-out",
+          "fixed inset-y-0 left-0 z-40 flex transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "-translate-x-full",
           "md:translate-x-0",
           className,
         )}
       >
         {/* Icon-only Strip */}
-        <div className="w-[60px] bg-white border-r border-gray-200 flex flex-col">
+        <div className="w-[60px] bg-background border-r border-border flex flex-col">
           {/* Logo */}
           <div className="flex items-center justify-center h-16 px-2">
             <div className="flex items-center h-40"></div>
@@ -163,42 +166,48 @@ export function Sidebar({ className }: SidebarProps) {
             {iconItems.map((item, index) => (
               <div key={index} className="flex flex-col items-center">
                 {item.hasSeparator && <Separator className="w-8 my-3" />}
-                <Link
-                  href={item.link || "#"}
-                  className="flex items-center justify-center w-10 h-10 rounded-md hover:bg-gray-100"
-                  onClick={(e) => {
-                    if (!item.link) {
-                      e.preventDefault()
-                      handleMenuItemClick(item.label)
-                    }
-                  }}
-                >
-                  <item.icon className="w-5 h-5 icon-bold" strokeWidth={3} />
-                  <span className="sr-only">{item.label}</span>
-                </Link>
+                {item.component ? (
+                  <div className="flex items-center justify-center w-10 h-10 rounded-md hover:bg-accent">
+                    <item.component />
+                  </div>
+                ) : (
+                  <Link
+                    href={item.link || "#"}
+                    className="flex items-center justify-center w-10 h-10 rounded-md hover:bg-accent"
+                    onClick={(e) => {
+                      if (!item.link) {
+                        e.preventDefault()
+                        handleMenuItemClick(item.label)
+                      }
+                    }}
+                  >
+                    <item.icon className="w-5 h-5 icon-bold" strokeWidth={3} />
+                    <span className="sr-only">{item.label}</span>
+                  </Link>
+                )}
               </div>
             ))}
           </nav>
         </div>
 
         {/* Content Strip */}
-        <div className="w-[240px] bg-white border-r border-gray-200 flex flex-col">
-          {/* Logo Text */}
-          <div className="flex justify-center text-center items-center py-4">
-            <Image src="/logo.svg" alt="Elevate" width={150} height={150} />
+        <div className="w-[240px] bg-background border-r border-border flex flex-col">
+          {/* Logo */}
+          <div className="flex items-center h-16 px-4">
+            <div className="flex items-center h-40"></div>
           </div>
 
           {/* Services Navigation */}
           <div className="flex-1 px-4 pb-3 space-y-6 overflow-y-auto">
             {servicesSections.map((section, sectionIndex) => (
               <div key={sectionIndex}>
-                <h3 className="text-sm font-bold mb-2">{section.title}</h3>
+                <h3 className="text-sm font-bold text-foreground mb-2">{section.title}</h3>
                 <div className="space-y-1">
                   {section.items.map((item, itemIndex) => (
                     <Link
                       key={itemIndex}
                       href={item.link || "#"}
-                      className="flex items-center text-bold px-2 py-2 text-sm rounded-md hover:bg-gray-100"
+                      className="flex items-center text-bold px-2 py-2 text-sm rounded-md hover:bg-accent"
                       onClick={(e) => {
                         if (!item.link) {
                           e.preventDefault()
@@ -206,11 +215,10 @@ export function Sidebar({ className }: SidebarProps) {
                         }
                       }}
                     >
-                      <div className={`rounded bg-slate-200 p-[1px] mr-3`}>
-                        <item.icon strokeWidth={3} className="w-4 font-bold h-4 " />
+                      <div className="rounded bg-muted p-[1px] mr-3">
+                        <item.icon strokeWidth={3} className="w-4 font-bold h-4" />
                       </div>
-
-                      <p className="font-bold text-[#505050]">{item.label}</p>
+                      <p className="font-bold text-foreground">{item.label}</p>
                     </Link>
                   ))}
                 </div>
@@ -223,41 +231,11 @@ export function Sidebar({ className }: SidebarProps) {
 
       {/* Overlay for mobile */}
       {isMobile && isOpen && (
-        <div className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden" onClick={toggleSidebar} />
+        <div className="fixed inset-0 z-30 bg-black/50 md:hidden" onClick={toggleSidebar} />
       )}
 
       {/* Notification Modal */}
-      <Dialog open={notificationOpen} onOpenChange={setNotificationOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Notifications</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-1">
-            <div className="flex items-start gap-3 p-3 rounded-lg border">
-              <div className="flex-shrink-0 bg-purple-100 p-2 rounded-lg">
-                <Image
-                  src="/placeholder.svg?height=40&width=40"
-                  alt="Achievement"
-                  width={40}
-                  height={40}
-                  className="rounded-md"
-                />
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="font-medium">You&apos;ve studied 3 sets! You&apos;ve earned set stacker status.</p>
-                    <p className="text-sm text-gray-500">5 days ago</p>
-                  </div>
-                </div>
-                <Button variant="link" className="px-0 h-auto text-blue-600">
-                  View all achievements
-                </Button>
-              </div>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <NotificationModal open={notificationOpen} onOpenChange={setNotificationOpen} />
 
       {/* Logout Confirmation Modal */}
       <Dialog open={logoutOpen} onOpenChange={setLogoutOpen}>
@@ -273,7 +251,6 @@ export function Sidebar({ className }: SidebarProps) {
             <Button
               variant="destructive"
               onClick={() => {
-                // Handle logout logic here
                 setLogoutOpen(false)
                 console.log("User logged out")
               }}
@@ -293,9 +270,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1  md:ml-[300px]"><SupportModalProvider>{children}</SupportModalProvider></main>
-    </div>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <main className="flex-1 md:ml-[300px]">
+          <SupportModalProvider>{children}</SupportModalProvider>
+        </main>
+      </div>
+    </ThemeProvider>
   )
 }

@@ -21,7 +21,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <header className="flex items-center justify-between p-4 md:p-6">
         <h1 className="text-lg  px-10  md:px-2  font-bold">Account Settings</h1>
         {/* <div className="flex items-center gap-2">

@@ -166,7 +166,7 @@ export default function Dashboard() {
   const isPopularNextDisabled = popularIndex >= popularCourses.length - visibleCards
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ">
       <header className="flex items-center justify-between  p-4 md:p-6">
         <h1 className="text-lg  px-10  md:px-2  font-bold">Welcome Back, John Doe</h1>
         <div className="flex items-center gap-2">

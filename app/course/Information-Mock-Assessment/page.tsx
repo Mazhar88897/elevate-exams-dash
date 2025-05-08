@@ -42,29 +42,26 @@ return (
       </div>
 
       <div className="space-y-4 mb-8">
-        <div className="flex justify-between items-center">
-        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        
+      <div className="flex justify-between items-center">
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 dark:border-slate-300 dark:text-slate-300 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
         {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
           </Link> */}
-        </div>
-
-        <div className="flex justify-between items-center">
-        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
-          {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
+        </div><div className="flex justify-between items-center">
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 dark:border-slate-300 dark:text-slate-300 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
           </Link> */}
-        </div>
-
-        <div className="flex justify-between items-center">
-        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
+        </div><div className="flex justify-between items-center">
+        < Link href="/course/Information-Mock-Assessment/assesment" className="w-full border-slate-800 dark:border-slate-300 dark:text-slate-300 max-w-xs md:max-w-md rounded-mid hover:cursor-pointer p-3 border text-center text-slate-800 text-sm font-bold" onClick={()=>{}}>length of exam - 140</Link>
         {/* <Link href="/course/result" className="text-right hover:text-[#5834BD]" >
             <span className="text-sm font-medium">View result</span>
           </Link> */}
         </div>
       </div>
 
-      <div className="space-y-4 text-sm font-semibold text-slate-800">
+      <div className="space-y-4 text-sm font-semibold text-slate-800 dark:text-slate-300">
         <p>Our mock exam imitates both the time limit and question count of the AMFTBB MFT exam.</p>
         <p>
           Pocketubject matter experts developed this content to prepare you for the types of questions you will

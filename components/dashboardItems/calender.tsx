@@ -177,21 +177,21 @@ export default function CalendarSchedule() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 max-w-full w-full mx-auto">
+    <div className="bg-card rounded-lg shadow-sm border border-border max-w-full w-full mx-auto">
       <div className="p-4 px-5">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-base font-medium text-gray-800"></h2>
+          <h2 className="text-base font-medium text-card-foreground"></h2>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <button onClick={handlePrevMonth} className="p-1 rounded-full hover:bg-gray-100">
-                <ChevronLeft className="h-4 w-4 text-gray-500" />
+              <button onClick={handlePrevMonth} className="p-1 rounded-full hover:bg-accent">
+                <ChevronLeft className="h-4 w-4 text-muted-foreground" />
               </button>
-              <span className="text-sm text-gray-600">{currentMonth}</span>
-              <button onClick={handleNextMonth} className="p-1 rounded-full hover:bg-gray-100">
-                <ChevronRight className="h-4 w-4 text-gray-500" />
+              <span className="text-sm text-foreground">{currentMonth}</span>
+              <button onClick={handleNextMonth} className="p-1 rounded-full hover:bg-accent">
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </button>
             </div>
-            <span className="text-sm text-gray-600">{currentYear}</span>
+            <span className="text-sm text-foreground">{currentYear}</span>
           </div>
         </div>
 
@@ -199,7 +199,7 @@ export default function CalendarSchedule() {
         <div className="mb-6">
           <div className="grid grid-cols-7 mb-2 gap-x-1">
             {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-              <div key={day} className="text-center text-xs font-medium py-1 bg-gray-100 text-gray-600">
+              <div key={day} className="text-center text-xs font-medium py-1 bg-muted text-muted-foreground">
                 {day}
               </div>
             ))}
@@ -217,9 +217,9 @@ export default function CalendarSchedule() {
                   <div
                     key={`${weekIndex}-${dayIndex}`}
                     className={cn(
-                      "h-8 flex items-center justify-center text-xs border-t cursor-pointer hover:bg-gray-50",
-                      isCurrentMonth ? "text-gray-700" : "text-gray-300",
-                      isHighlighted && "bg-emerald-500 text-white hover:bg-emerald-600",
+                      "h-8 flex items-center justify-center text-xs border-t border-border cursor-pointer hover:bg-accent",
+                      isCurrentMonth ? "text-foreground" : "text-muted-foreground",
+                      isHighlighted && "bg-blue-500 text-white hover:bg-primary/90",
                       hasEvent && !isHighlighted && "font-medium",
                     )}
                     onClick={() => handleDayClick(day)}
@@ -234,32 +234,32 @@ export default function CalendarSchedule() {
 
         {/* Events Section */}
         <div>
-          <h3 className="text-xs font-semibold text-gray-500 mb-3">EVENTS</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground mb-3">EVENTS</h3>
           <div className="space-y-3">
             {events.map((event) => (
               <div key={event.id} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div
                     className={cn(
-                      "w-6 h-6 rounded-full flex items-center justify-center text-white text-xs",
+                      "w-6 h-6 rounded-full flex items-center justify-center text-primary-foreground text-xs",
                       event.color,
                     )}
                   >
                     {event.day}
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-800">{event.title}</p>
-                    {event.description && <p className="text-xs text-gray-500">{event.description}</p>}
+                    <p className="text-xs font-medium text-foreground">{event.title}</p>
+                    {event.description && <p className="text-xs text-muted-foreground">{event.description}</p>}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">{event.time}</span>
+                  <span className="text-xs text-muted-foreground">{event.time}</span>
                   {event.hasAttachment && (
-                    <div className="w-5 h-5 rounded flex items-center justify-center bg-gray-100">
-                      <Paperclip className="h-2.5 w-2.5 text-gray-500" />
+                    <div className="w-5 h-5 rounded flex items-center justify-center bg-muted">
+                      <Paperclip className="h-2.5 w-2.5 text-muted-foreground" />
                     </div>
                   )}
-                  <div className="w-5 h-5 rounded flex items-center justify-center bg-orange-500 text-white">
+                  <div className="w-5 h-5 rounded flex items-center justify-center bg-primary text-primary-foreground">
                     <Plus className="h-2.5 w-2.5" />
                   </div>
                 </div>
@@ -271,15 +271,15 @@ export default function CalendarSchedule() {
 
       {/* Add Event Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-background">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-foreground">
               Add Event for {currentMonth} {selectedDay}
             </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <label htmlFor="title" className="text-sm font-medium">
+              <label htmlFor="title" className="text-sm font-medium text-foreground">
                 Event Title
               </label>
               <Input
@@ -287,10 +287,11 @@ export default function CalendarSchedule() {
                 placeholder="Enter event title"
                 value={newEventTitle}
                 onChange={(e) => setNewEventTitle(e.target.value)}
+                className="bg-background"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="description" className="text-sm font-medium">
+              <label htmlFor="description" className="text-sm font-medium text-foreground">
                 Description
               </label>
               <Textarea
@@ -298,6 +299,7 @@ export default function CalendarSchedule() {
                 placeholder="Enter event description"
                 value={newEventDescription}
                 onChange={(e) => setNewEventDescription(e.target.value)}
+                className="bg-background"
               />
             </div>
           </div>

@@ -72,7 +72,7 @@ export default function QuizResultsPage() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8">
           {/* Left side - Title and Status */}
           <div className="mb-6 md:mb-0 md:max-w-[60%]">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               IT & Cybersecurity is the practice of protecting systems
             </h2>
             <div className="flex items-center gap-6 text-sm">
@@ -82,7 +82,7 @@ export default function QuizResultsPage() {
               </div> */}
               <div className="flex font-bold items-center gap-2">
                 <span>Total Question:</span>
-                <span className="text-blue-800">20</span>
+                <span className="text-blue-700">20</span>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function QuizResultsPage() {
           {/* Right side - Accuracy and Answered */}
           <div className="flex gap-10">
             <div>
-              <div className="text-sm text-gray-600 mb-1 font-semibold">Accuracy</div>
+              <div className="text-sm text-gray-600 dark:text-slate-300 mb-1 font-semibold">Accuracy</div>
               <div className="flex items-center gap-2">
                 {/* Semi-circle gauge for accuracy */}
                 <div className="w-6 h-5 relative">
@@ -108,12 +108,12 @@ export default function QuizResultsPage() {
                     />
                   </svg>
                 </div>
-                <span className="font-bold text-slate-500 text-sm">90%</span>
+                <span className="font-bold text-slate-500 dark:text-slate-300 text-sm">90%</span>
               </div>
             </div>
             <div>
-              <div className="text-sm text-gray-600 font-semibold mb-1">Answered</div>
-              <div className="font-bold text-sm text-slate-600"><span className="text-slate-800 font-black">19</span>/20</div>
+              <div className="text-sm text-gray-600 dark:text-slate-300 font-semibold mb-1">Answered</div>
+              <div className="font-bold text-sm text-slate-600 dark:text-slate-300"><span className="text-slate-800 dark:text-slate-300 font-black">19</span>/20</div>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function QuizResultsPage() {
           {gridQuestions.map((question) => (
             <div
               key={question.id}
-              className="relative w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center"
+              className="relative w-16 h-16 bg-gray-200 dark:bg-slate-900 rounded-lg flex items-center justify-center"
             >
               {/* Status indicator in top right */}
               <div className="absolute top-1 right-1">
@@ -145,7 +145,7 @@ export default function QuizResultsPage() {
               </div>
 
               {/* Question number */}
-              <span className="text-xl font-black text-black">{question.id}</span>
+              <span className="text-xl font-black text-black dark:text-white">{question.id}</span>
             </div>
           ))}
         </div>
@@ -230,11 +230,11 @@ export default function QuizResultsPage() {
 
               {/* Right side: Category */}
               <div className="flex gap-2">
-              <div className="px-4 py-1 bg-gray-200 rounded-full flex items-center">
+              <div className="px-4 py-1 bg-gray-200 text-black rounded-full flex items-center">
                 <span className="text-xs font-medium">{question.category}</span>
               </div>
               <button
-              className="flex items-center gap-1 text-sm font-medium text-gray-600"
+              className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-slate-300"
               onClick={() => toggleExplanation(question.id)}
             >
               <span className="text-sm font-bold hidden sm:block">Explanation</span>
@@ -248,16 +248,16 @@ export default function QuizResultsPage() {
             </div>
 
             {/* Question Text */}
-            <p className="text-base text-gray-800 font-semibold">{question.text}</p>
+            <p className="text-base text-gray-800 dark:text-slate-100 font-semibold">{question.text}</p>
           </div>
 
           {/* Bottom: Explanation toggle */}
          
           {/* Explanation Content */}
           {openExplanations[question.id] && (
-            <div className="px-4 pb-4 bg-gray-50 border-gray-200">
-              <p className="text-slate-800 text-sm font-bold">Explaination:</p>
-              <p className="text-xs text-slate-800 font-semibold">{question.explanation}</p>
+            <div className="px-4 pb-4 bg-gray-50 border-gray-200 dark:bg-black">
+              <p className="text-slate-800 dark:text-slate-100 text-sm font-bold">Explaination:</p>
+              <p className="text-xs text-slate-800 dark:text-slate-100 font-semibold">{question.explanation}</p>
             </div>
           )}
         </div>

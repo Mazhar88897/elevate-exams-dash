@@ -120,7 +120,7 @@ const FlashcardWithFlip = ({
       >
         {/* Front of card */}
         <div
-          className="absolute w-full h-full bg-white rounded-lg flex flex-col items-center justify-center p-8"
+          className="absolute w-full h-full bg-white dark:bg-slate-900 rounded-lg flex flex-col items-center justify-center p-8 shadow-lg"
           style={styles.cardFace}
         >
           <button
@@ -128,20 +128,19 @@ const FlashcardWithFlip = ({
               e.stopPropagation()
               onFavorite()
             }}
-            className="absolute top-4 right-4 text-gray-300 hover:text-yellow-400 z-10"
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 z-10 transition-colors"
           >
-            <Star className={cn("h-5 w-5", favorited && "fill-yellow-400 text-yellow-400")} />
+            <Star className={cn("h-6 w-6", favorited && "fill-gray-600 text-gray-600 dark:fill-gray-200 dark:text-gray-200")} />
           </button>
-          <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-lg opacity-80" />
           <div className="relative z-10">
-            <div className="text-3xl font-medium text-center text-gray-800">{front}</div>
-            <div className="mt-4 text-sm text-center text-gray-500">Click to flip</div>
+            <div className="text-3xl font-bold text-center text-gray-900 dark:text-white">{front}</div>
+            <div className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400 font-medium">Click to flip</div>
           </div>
         </div>
 
         {/* Back of card */}
         <div
-          className="absolute w-full h-full bg-white rounded-lg flex flex-col items-center justify-center p-8"
+          className="absolute w-full h-full bg-gray-50 dark:bg-black rounded-lg flex flex-col items-center justify-center p-8 shadow-lg"
           style={{ ...styles.cardFace, ...styles.cardBack }}
         >
           <button
@@ -149,14 +148,13 @@ const FlashcardWithFlip = ({
               e.stopPropagation()
               onFavorite()
             }}
-            className="absolute top-4 right-4 text-gray-300 hover:text-yellow-400 z-10"
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 z-10 transition-colors"
           >
-            <Star className={cn("h-5 w-5", favorited && "fill-yellow-400 text-yellow-400")} />
+            <Star className={cn("h-6 w-6", favorited && "fill-gray-600 text-gray-600 dark:fill-gray-200 dark:text-gray-200")} />
           </button>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg opacity-80" />
           <div className="relative z-10">
-            <div className="text-xl font-medium text-center text-gray-800">{back}</div>
-            <div className="mt-4 text-sm text-center text-gray-500">Click to flip back</div>
+            <div className="text-2xl font-bold text-center text-gray-900 dark:text-white">{back}</div>
+            <div className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400 font-medium">Click to flip back</div>
           </div>
         </div>
       </div>
@@ -462,11 +460,11 @@ export default function FlashcardPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
-      <div className="w-[18rem] border-r mt-5 p-4 hidden md:block bg-white">
+      <div className="w-[18rem] border-r mt-5 p-4 hidden md:block ">
         <div className="mb-6">
-          <h2 className="font-black text-slate-800 text-md mb-2">{myCourse.courseName}</h2>
+          <h2 className="font-black text-slate-800 dark:text-slate-300 text-md mb-2">{myCourse.courseName}</h2>
           <Progress value={progress.overall} className="h-1.5 mt-4 rounded-full mb-4" />
         </div>
 
@@ -476,15 +474,15 @@ export default function FlashcardPage() {
             {myCourse.chapters.map((chapter, chapterIdx) => (
               <div key={chapterIdx} className="space-y-1">
                 <div
-                  className="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 rounded px-1"
+                  className="flex items-center gap-2 py-1 cursor-pointer  rounded px-1"
                   onClick={() => handleChapterSelect(chapterIdx)}
                 >
                   {expandedChapters[chapterIdx] ? (
-                    <ChevronDown className="h-4 w-4 font-black text-slate-800" />
+                    <ChevronDown className="h-4 w-4 font-black text-slate-800 dark:text-slate-300" />
                   ) : (
-                    <ChevronRight className="h-4 w-4 font-black text-slate-800" />
+                    <ChevronRight className="h-4 w-4 font-black text-slate-800 dark:text-slate-300" />
                   )}
-                  <span className="text-sm font-bold text-slate-800">{chapter.chapterName}</span>
+                  <span className="text-sm font-bold text-slate-800 dark:text-slate-300">{chapter.chapterName}</span>
                   <div
                     className={cn(
                       "ml-auto w-5 h-5 rounded-full border-4 flex items-center justify-center",
@@ -514,15 +512,15 @@ export default function FlashcardPage() {
                         <div key={subchapterIdx}>
                           <div
                             className={cn(
-                              "flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 rounded px-1",
+                              "flex items-center font-medium gap-2 py-1 cursor-pointer  rounded px-1",
                               currentChapterIndex === chapterIdx &&
                                 currentSubchapterIndex === subchapterIdx &&
-                                "bg-gray-100",
+                                "text-bold",
                             )}
                             onClick={() => handleSubchapterSelect(chapterIdx, subchapterIdx)}
                           >
-                            <span className="text-xs font-medium text-slate-700">{subchapter.subchapterName}</span>
-                            <span className="ml-auto text-xs font-medium text-slate-600">
+                            <span className="text-xs  text-slate-700 dark:text-slate-300">{subchapter.subchapterName}</span>
+                            <span className="ml-auto text-xs  text-slate-600 dark:text-slate-300">
                               {completedCount}/{totalCount}
                             </span>
                           </div>
@@ -537,7 +535,7 @@ export default function FlashcardPage() {
 
           <div className="mb-20 flex flex-col gap-2 justify-center items-center">
             <div className="text-xm font-bold">Add Notes</div>
-            <div className="text-xm font-bold bg-black text-white px-2 rounded-mid">Favourites</div>
+            <div className="text-xm font-bold bg-black text-white dark:bg-white dark:text-black px-2 rounded-mid">Favourites</div>
           </div>
         </div>
       </div>
@@ -546,16 +544,16 @@ export default function FlashcardPage() {
       <div className="flex-1 flex flex-col">
         {/* Flashcard container */}
         <div className="flex-1 p-6 max-w-3xl mx-auto w-full flex flex-col">
-          <div className="rounded-lg flex-1 flex flex-col bg-white overflow-hidden">
+          <div className="rounded-lg flex-1 flex flex-col overflow-hidden">
             {/* Card header */}
             <div className="flex px-8 justify-between">
               <div></div>
               <div className="flex justify-center flex-col items-center p-4">
-                <div className="text-sm font-black text-gray-600">
+                <div className="text-sm font-black  text-gray-600 dark:text-gray-300">
                   {getCurrentCardNumber()} / {totalFlashcards}
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="bg-white text-gray-800 border-2 border-gray-400 text-xs font-bold px-3 py-1 rounded-full">
+                  <span className=" text-gray-800 dark:text-gray-300 border-2 border-gray-400 text-xs font-bold px-3 py-1 rounded-full">
                     {currentChapter.chapterName} - {currentSubchapter.subchapterName}
                   </span>
                 </div>
@@ -566,7 +564,7 @@ export default function FlashcardPage() {
             </div>
 
             {/* Card content with 3D flip */}
-            <div className="flex-1 flex flex-col font-black text-slate-800 items-center justify-center p-8 relative">
+            <div className="flex-1 dark:bg-black flex flex-col font-black dark:text-slate-300 text-slate-800 items-center justify-center p-8 relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${currentChapterIndex}-${currentSubchapterIndex}-${currentCardIndex}`}
@@ -576,7 +574,7 @@ export default function FlashcardPage() {
                   transition={{ duration: 0.3 }}
                   className="w-full h-full"
                 >
-                  <div className="w-full h-full min-h-[200px] font-semibold text-slate-800 shadow-xl rounded-xl overflow-hidden">
+                  <div className="w-full dark:bg-black border border-gray-300 h-full min-h-[200px] font-semibold text-slate-800 shadow-xl rounded-xl overflow-hidden">
                     <FlashcardWithFlip
                       front={currentFlashcard.question}
                       back={currentFlashcard.answer}
@@ -599,14 +597,14 @@ export default function FlashcardPage() {
               <div className="flex space-x-2">
                 <div
                   onClick={handlePrevious}
-                  className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                  className="w-16 h-9 border border-slate-400 rounded-full  hover:bg-gray-100 dark:hover:bg-black transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <ArrowLeft className="w-6 h-5 font-bold" />
                 </div>
 
                 <div
                   onClick={handleNext}
-                  className="w-16 h-9 border border-slate-400 rounded-full bg-white hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                  className="w-16 h-9 border border-slate-400 rounded-full  hover:bg-gray-100 dark:hover:bg-black transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <ArrowRight className="w-6 h-5 font-bold" />
                 </div>
